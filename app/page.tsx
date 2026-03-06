@@ -1,3 +1,4 @@
+import EvaluarForm from "./components/EvaluarForm";
 export default function Home() {
   return (
     <main
@@ -444,65 +445,55 @@ export default function Home() {
         </div>
       </section>
 
-      <section
+<section
+  style={{
+    maxWidth: "1280px",
+    margin: "0 auto",
+    padding: "36px 24px 90px 24px",
+    position: "relative",
+    zIndex: 2,
+  }}
+>
+  <div style={ctaWrap}>
+    <div>
+      <h2
         style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "36px 24px 90px 24px",
-          position: "relative",
-          zIndex: 2,
+          fontSize: "58px",
+          lineHeight: 1.04,
+          margin: "0 0 16px 0",
+          letterSpacing: "-2px",
         }}
       >
-        <div style={ctaWrap}>
-          <div>
-            <h2 style={{ fontSize: "58px", lineHeight: 1.04, margin: "0 0 16px 0", letterSpacing: "-2px" }}>
-              Evalúa tu empresa antes de tomar la siguiente decisión
-            </h2>
-            <p style={{ fontSize: "22px", color: "#cbd5e1", maxWidth: "650px", lineHeight: 1.55 }}>
-              Déjanos tu información y te contactaremos con un diagnóstico preliminar
-              de madurez estratégica.
-            </p>
-          </div>
+        Evalúa tu empresa antes de tomar la siguiente decisión
+      </h2>
 
-          <div style={formCard}>
-            <label style={label}>Correo</label>
-            <input style={input} placeholder="tu@correo.com" />
-
-            <label style={label}>Rol</label>
-            <select style={input}>
-              <option>Selecciona una opción</option>
-              <option>Dueño / Fundador</option>
-              <option>Dirección general</option>
-              <option>Finanzas</option>
-              <option>Operaciones</option>
-            </select>
-
-            <label style={label}>Tamaño de empresa</label>
-            <select style={input}>
-              <option>Selecciona una opción</option>
-              <option>1–10 empleados</option>
-              <option>11–50 empleados</option>
-              <option>51–250 empleados</option>
-              <option>250+ empleados</option>
-            </select>
-
-            <button style={{ ...primaryBig, width: "100%", marginTop: "12px" }}>
-              Evaluar mi empresa
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="faq"
+      <p
         style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 24px 80px 24px",
-          position: "relative",
-          zIndex: 2,
+          fontSize: "22px",
+          color: "#cbd5e1",
+          maxWidth: "650px",
+          lineHeight: 1.55,
         }}
       >
+        Déjanos tu información y te contactaremos con un diagnóstico
+        preliminar de madurez estratégica.
+      </p>
+    </div>
+
+    <EvaluarForm />
+  </div>
+  </section>
+      
+<section
+  id="faq"
+  style={{
+    maxWidth: "1280px",
+    margin: "0 auto",
+    padding: "0 24px 80px 24px",
+    position: "relative",
+    zIndex: 2,
+  }}
+>
         <h2 style={sectionTitle}>FAQ</h2>
         <div style={{ display: "grid", gap: "14px", marginTop: "18px" }}>
           {[
