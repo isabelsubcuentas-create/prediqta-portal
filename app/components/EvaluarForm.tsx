@@ -10,10 +10,16 @@ export default function EvaluarForm() {
   const [mensaje, setMensaje] = useState("");
   const [cargando, setCargando] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!correo || !rol || !tamano) {
+      setMensaje("Por favor completa todos los campos.");
+      return;
+    }
+
     setCargando(true);
-    setMensaje("");
+    setMensaje("Enviando...");
 
     const { error } = await supabase.from("leads").insert([
       {
@@ -40,6 +46,7 @@ export default function EvaluarForm() {
     <form onSubmit={handleSubmit} style={formCard}>
       <label style={label}>Correo</label>
       <input
+        type="email"
         style={input}
         placeholder="tu@correo.com"
         value={correo}
@@ -74,13 +81,19 @@ export default function EvaluarForm() {
 
       <button
         type="submit"
-        style={{ ...primaryBig, width: "100%", marginTop: "12px" }}
+        disabled={cargando}
+        style={{
+          ...primaryBig,
+          width: "100%",
+          marginTop: "12px",
+          opacity: cargando ? 0.7 : 1,
+        }}
       >
         {cargando ? "Enviando..." : "Evaluar mi empresa"}
       </button>
 
       {mensaje && (
-        <p style={{ marginTop: "14px", color: "#cbd5e1", fontSize: "14px" }}>
+        <p style={mensajeStyle}>
           {mensaje}
         </p>
       )}
@@ -125,4 +138,11 @@ const primaryBig: React.CSSProperties = {
   fontSize: "18px",
   cursor: "pointer",
   boxShadow: "0 18px 40px rgba(99,102,241,0.28)",
+};
+
+const mensajeStyle: React.CSSProperties = {
+  marginTop: "14px",
+  color: "#cbd5e1",
+  fontSize: "14px",
+  lineHeight: 1.5,
 };
