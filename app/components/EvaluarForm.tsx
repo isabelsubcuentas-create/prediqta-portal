@@ -10,9 +10,7 @@ export default function EvaluarForm() {
   const [mensaje, setMensaje] = useState("");
   const [cargando, setCargando] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
+  async function enviarLead() {
     if (!correo || !rol || !tamano) {
       setMensaje("Por favor completa todos los campos.");
       return;
@@ -43,7 +41,7 @@ export default function EvaluarForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={formCard}>
+    <div style={formCard}>
       <label style={label}>Correo</label>
       <input
         type="email"
@@ -80,24 +78,23 @@ export default function EvaluarForm() {
       </select>
 
       <button
-        type="submit"
+        type="button"
         disabled={cargando}
+        onClick={enviarLead}
         style={{
           ...primaryBig,
           width: "100%",
           marginTop: "12px",
           opacity: cargando ? 0.7 : 1,
+          position: "relative",
+          zIndex: 10,
         }}
       >
         {cargando ? "Enviando..." : "Evaluar mi empresa"}
       </button>
 
-      {mensaje && (
-        <p style={mensajeStyle}>
-          {mensaje}
-        </p>
-      )}
-    </form>
+      {mensaje && <p style={mensajeStyle}>{mensaje}</p>}
+    </div>
   );
 }
 
@@ -106,6 +103,8 @@ const formCard: React.CSSProperties = {
   border: "1px solid rgba(255,255,255,0.08)",
   borderRadius: "26px",
   padding: "22px",
+  position: "relative",
+  zIndex: 5,
 };
 
 const label: React.CSSProperties = {
