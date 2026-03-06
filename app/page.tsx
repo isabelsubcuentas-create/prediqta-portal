@@ -4,7 +4,7 @@ export default function Home() {
       style={{
         minHeight: "100vh",
         background:
-          "radial-gradient(circle at top left, rgba(111,76,255,0.16), transparent 30%), radial-gradient(circle at top right, rgba(0,194,255,0.12), transparent 25%), linear-gradient(180deg, #f8fbff 0%, #eef3ff 100%)",
+          "radial-gradient(circle at top left, rgba(56, 189, 248, 0.10), transparent 28%), radial-gradient(circle at top right, rgba(99, 102, 241, 0.16), transparent 30%), linear-gradient(180deg, #f7faff 0%, #eef4ff 100%)",
         color: "#0f172a",
         fontFamily: "Arial, sans-serif",
       }}
@@ -15,8 +15,8 @@ export default function Home() {
           margin: "0 auto",
           padding: "24px 24px 0 24px",
           display: "flex",
-          alignItems: "center",
           justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         <div style={{ fontSize: "28px", fontWeight: 800, letterSpacing: "-1px" }}>
@@ -24,22 +24,16 @@ export default function Home() {
         </div>
 
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          <a
-            href="#features"
-            style={{ textDecoration: "none", color: "#334155", fontWeight: 600 }}
-          >
-            Features
+          <a href="#funciones" style={{ textDecoration: "none", color: "#334155", fontWeight: 600 }}>
+            Funciones
           </a>
-          <a
-            href="#pricing"
-            style={{ textDecoration: "none", color: "#334155", fontWeight: 600 }}
-          >
-            Pricing
+          <a href="#planes" style={{ textDecoration: "none", color: "#334155", fontWeight: 600 }}>
+            Planes
           </a>
           <button
             style={{
               background: "white",
-              border: "1px solid #dbe2f0",
+              border: "1px solid #dbe3f1",
               color: "#0f172a",
               padding: "10px 16px",
               borderRadius: "999px",
@@ -47,21 +41,21 @@ export default function Home() {
               cursor: "pointer",
             }}
           >
-            Log in
+            Iniciar sesión
           </button>
           <button
             style={{
-              background: "linear-gradient(135deg, #4f46e5, #06b6d4)",
+              background: "linear-gradient(135deg, #4f46e5, #0ea5e9)",
               border: "none",
               color: "white",
               padding: "10px 18px",
               borderRadius: "999px",
               fontWeight: 700,
               cursor: "pointer",
-              boxShadow: "0 12px 30px rgba(79,70,229,0.25)",
+              boxShadow: "0 14px 30px rgba(79,70,229,0.22)",
             }}
           >
-            Get started
+            Crear cuenta
           </button>
         </div>
       </nav>
@@ -90,7 +84,7 @@ export default function Home() {
               marginBottom: "18px",
             }}
           >
-            Strategic Intelligence Platform
+            Plataforma de inteligencia estratégica
           </div>
 
           <h1
@@ -102,9 +96,9 @@ export default function Home() {
               fontWeight: 800,
             }}
           >
-            Predict better.
+            Anticipa mejor.
             <br />
-            Decide smarter.
+            Decide con claridad.
           </h1>
 
           <p
@@ -112,18 +106,18 @@ export default function Home() {
               fontSize: "24px",
               lineHeight: 1.5,
               color: "#334155",
-              maxWidth: "720px",
+              maxWidth: "760px",
               marginBottom: "30px",
             }}
           >
-            Prediqta helps businesses anticipate risks, simulate scenarios and
-            make data-backed strategic decisions with AI-powered intelligence.
+            Prediqta ayuda a empresas a anticipar riesgos, simular escenarios y
+            tomar decisiones de negocio con inteligencia artificial y análisis estratégico.
           </p>
 
-          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "30px" }}>
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "28px" }}>
             <button
               style={{
-                background: "linear-gradient(135deg, #4f46e5, #06b6d4)",
+                background: "linear-gradient(135deg, #4f46e5, #0ea5e9)",
                 color: "white",
                 border: "none",
                 padding: "16px 24px",
@@ -131,17 +125,17 @@ export default function Home() {
                 fontSize: "16px",
                 fontWeight: 700,
                 cursor: "pointer",
-                boxShadow: "0 14px 40px rgba(79,70,229,0.25)",
+                boxShadow: "0 16px 34px rgba(79,70,229,0.24)",
               }}
             >
-              Start free trial
+              Comenzar prueba
             </button>
 
             <button
               style={{
                 background: "white",
                 color: "#0f172a",
-                border: "1px solid #dbe2f0",
+                border: "1px solid #dbe3f1",
                 padding: "16px 24px",
                 borderRadius: "14px",
                 fontSize: "16px",
@@ -149,14 +143,14 @@ export default function Home() {
                 cursor: "pointer",
               }}
             >
-              Watch product demo
+              Ver plataforma
             </button>
           </div>
 
           <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", color: "#475569" }}>
-            <div><strong style={{ color: "#0f172a" }}>AI Advisor</strong> for business decisions</div>
-            <div><strong style={{ color: "#0f172a" }}>Scenario</strong> simulation tools</div>
-            <div><strong style={{ color: "#0f172a" }}>Risk</strong> radar & alerts</div>
+            <div><strong style={{ color: "#0f172a" }}>Asesor IA</strong> para decisiones clave</div>
+            <div><strong style={{ color: "#0f172a" }}>Simulación</strong> de escenarios</div>
+            <div><strong style={{ color: "#0f172a" }}>Radar</strong> de riesgos estratégicos</div>
           </div>
         </div>
 
@@ -164,10 +158,10 @@ export default function Home() {
           <div
             style={{
               background: "rgba(255,255,255,0.72)",
-              border: "1px solid rgba(255,255,255,0.7)",
-              borderRadius: "28px",
+              border: "1px solid rgba(255,255,255,0.75)",
+              borderRadius: "30px",
               padding: "20px",
-              boxShadow: "0 25px 60px rgba(15,23,42,0.10)",
+              boxShadow: "0 30px 70px rgba(15,23,42,0.10)",
               backdropFilter: "blur(14px)",
             }}
           >
@@ -183,35 +177,35 @@ export default function Home() {
                 style={{
                   background: "#0f172a",
                   color: "white",
-                  borderRadius: "20px",
-                  padding: "20px",
-                  minHeight: "140px",
+                  borderRadius: "22px",
+                  padding: "22px",
+                  minHeight: "150px",
                 }}
               >
-                <div style={{ fontSize: "14px", opacity: 0.75, marginBottom: "8px" }}>
-                  Strategic Health
+                <div style={{ fontSize: "14px", opacity: 0.72, marginBottom: "8px" }}>
+                  Estado estratégico
                 </div>
-                <div style={{ fontSize: "40px", fontWeight: 800 }}>87%</div>
-                <div style={{ color: "#67e8f9", marginTop: "10px" }}>+12% this month</div>
+                <div style={{ fontSize: "42px", fontWeight: 800 }}>87%</div>
+                <div style={{ color: "#67e8f9", marginTop: "10px" }}>Mejora mensual</div>
               </div>
 
               <div
                 style={{
                   background: "white",
-                  borderRadius: "20px",
+                  borderRadius: "22px",
                   padding: "20px",
-                  minHeight: "140px",
+                  minHeight: "150px",
                   border: "1px solid #e2e8f0",
                 }}
               >
                 <div style={{ fontSize: "14px", color: "#64748b", marginBottom: "12px" }}>
-                  Scenario comparison
+                  Comparación de escenarios
                 </div>
-                <div style={{ display: "flex", alignItems: "end", gap: "10px", height: "80px" }}>
-                  <div style={{ width: "24px", height: "45px", background: "#c7d2fe", borderRadius: "8px" }} />
-                  <div style={{ width: "24px", height: "72px", background: "#818cf8", borderRadius: "8px" }} />
-                  <div style={{ width: "24px", height: "58px", background: "#22d3ee", borderRadius: "8px" }} />
-                  <div style={{ width: "24px", height: "85px", background: "#4f46e5", borderRadius: "8px" }} />
+                <div style={{ display: "flex", alignItems: "end", gap: "10px", height: "84px" }}>
+                  <div style={{ width: "26px", height: "46px", background: "#c7d2fe", borderRadius: "8px" }} />
+                  <div style={{ width: "26px", height: "76px", background: "#818cf8", borderRadius: "8px" }} />
+                  <div style={{ width: "26px", height: "60px", background: "#38bdf8", borderRadius: "8px" }} />
+                  <div style={{ width: "26px", height: "88px", background: "#4f46e5", borderRadius: "8px" }} />
                 </div>
               </div>
             </div>
@@ -225,7 +219,7 @@ export default function Home() {
               }}
             >
               <div style={{ fontSize: "14px", color: "#64748b", marginBottom: "14px" }}>
-                Live decision workspace
+                Centro de decisiones
               </div>
 
               <div
@@ -244,7 +238,7 @@ export default function Home() {
                   }}
                 >
                   <div style={{ fontWeight: 700, marginBottom: "10px" }}>
-                    AI Strategic Advisor
+                    Asesor estratégico
                   </div>
                   <div
                     style={{
@@ -257,7 +251,7 @@ export default function Home() {
                       marginBottom: "10px",
                     }}
                   >
-                    What is the best expansion strategy for a retail SME facing margin pressure?
+                    ¿Cuál es la mejor estrategia de expansión para una PyME con presión en márgenes?
                   </div>
                   <div
                     style={{
@@ -268,7 +262,7 @@ export default function Home() {
                       fontSize: "14px",
                     }}
                   >
-                    Recommendation: prioritize high-margin categories, model two expansion paths, and monitor cash flow risk.
+                    Recomendación: priorizar categorías de mayor margen, modelar dos escenarios y monitorear flujo de efectivo.
                   </div>
                 </div>
 
@@ -281,11 +275,11 @@ export default function Home() {
                   }}
                 >
                   <div style={{ fontWeight: 700, marginBottom: "10px" }}>
-                    Risk Radar
+                    Radar de riesgo
                   </div>
-                  <div style={{ color: "#ef4444", marginBottom: "8px" }}>● Margin erosion</div>
-                  <div style={{ color: "#f59e0b", marginBottom: "8px" }}>● Supplier dependency</div>
-                  <div style={{ color: "#22c55e" }}>● Demand opportunity</div>
+                  <div style={{ color: "#ef4444", marginBottom: "8px" }}>Margen bajo</div>
+                  <div style={{ color: "#f59e0b", marginBottom: "8px" }}>Dependencia de proveedor</div>
+                  <div style={{ color: "#22c55e" }}>Oportunidad de demanda</div>
                 </div>
               </div>
             </div>
@@ -294,7 +288,7 @@ export default function Home() {
       </section>
 
       <section
-        id="features"
+        id="funciones"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
@@ -303,9 +297,9 @@ export default function Home() {
       >
         <div style={{ marginBottom: "22px" }}>
           <div style={{ color: "#4338ca", fontWeight: 700, marginBottom: "8px" }}>
-            Core capabilities
+            Funciones principales
           </div>
-          <h2 style={{ fontSize: "42px", margin: 0 }}>A platform built for strategic action</h2>
+          <h2 style={{ fontSize: "42px", margin: 0 }}>Tecnología pensada para la acción estratégica</h2>
         </div>
 
         <div
@@ -315,58 +309,51 @@ export default function Home() {
             gap: "22px",
           }}
         >
-          <div
-            style={{
-              background: "rgba(255,255,255,0.82)",
-              borderRadius: "24px",
-              padding: "28px",
-              border: "1px solid rgba(255,255,255,0.75)",
-              boxShadow: "0 18px 45px rgba(15,23,42,0.08)",
-            }}
-          >
-            <div style={{ fontSize: "34px", marginBottom: "14px" }}>🤖</div>
-            <h3 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>AI Strategic Advisor</h3>
-            <p style={{ color: "#475569", fontSize: "17px", lineHeight: 1.7 }}>
-              Ask complex business questions and receive structured recommendations powered by AI.
-            </p>
-          </div>
-
-          <div
-            style={{
-              background: "rgba(255,255,255,0.82)",
-              borderRadius: "24px",
-              padding: "28px",
-              border: "1px solid rgba(255,255,255,0.75)",
-              boxShadow: "0 18px 45px rgba(15,23,42,0.08)",
-            }}
-          >
-            <div style={{ fontSize: "34px", marginBottom: "14px" }}>📊</div>
-            <h3 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>Scenario Simulator</h3>
-            <p style={{ color: "#475569", fontSize: "17px", lineHeight: 1.7 }}>
-              Compare strategic paths, test assumptions and visualize outcomes before making decisions.
-            </p>
-          </div>
-
-          <div
-            style={{
-              background: "rgba(255,255,255,0.82)",
-              borderRadius: "24px",
-              padding: "28px",
-              border: "1px solid rgba(255,255,255,0.75)",
-              boxShadow: "0 18px 45px rgba(15,23,42,0.08)",
-            }}
-          >
-            <div style={{ fontSize: "34px", marginBottom: "14px" }}>⚠️</div>
-            <h3 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>Risk Radar</h3>
-            <p style={{ color: "#475569", fontSize: "17px", lineHeight: 1.7 }}>
-              Detect critical threats and emerging opportunities to improve resilience and decision quality.
-            </p>
-          </div>
+          {[
+            {
+              title: "Asesor estratégico de IA",
+              text: "Haz preguntas complejas y recibe recomendaciones estructuradas para apoyar decisiones de negocio.",
+            },
+            {
+              title: "Simulador de escenarios",
+              text: "Prueba distintos caminos estratégicos, ajusta supuestos y visualiza posibles resultados antes de actuar.",
+            },
+            {
+              title: "Radar de riesgo",
+              text: "Detecta amenazas críticas y oportunidades emergentes para mejorar resiliencia y calidad de decisión.",
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              style={{
+                background: "rgba(255,255,255,0.82)",
+                borderRadius: "24px",
+                padding: "28px",
+                border: "1px solid rgba(255,255,255,0.75)",
+                boxShadow: "0 18px 45px rgba(15,23,42,0.08)",
+              }}
+            >
+              <div
+                style={{
+                  width: "56px",
+                  height: "56px",
+                  borderRadius: "16px",
+                  background: "linear-gradient(135deg, #4f46e5, #38bdf8)",
+                  marginBottom: "18px",
+                  boxShadow: "0 14px 24px rgba(79,70,229,0.18)",
+                }}
+              />
+              <h3 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>{item.title}</h3>
+              <p style={{ color: "#475569", fontSize: "17px", lineHeight: 1.7 }}>
+                {item.text}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
       <section
-        id="pricing"
+        id="planes"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
@@ -379,14 +366,14 @@ export default function Home() {
             color: "white",
             borderRadius: "30px",
             padding: "36px",
-            boxShadow: "0 28px 80px rgba(15,23,42,0.18)",
+            boxShadow: "0 30px 80px rgba(15,23,42,0.18)",
           }}
         >
           <div style={{ marginBottom: "24px" }}>
             <div style={{ color: "#67e8f9", fontWeight: 700, marginBottom: "8px" }}>
-              Pricing
+              Planes
             </div>
-            <h2 style={{ fontSize: "40px", margin: 0 }}>Flexible plans for growing teams</h2>
+            <h2 style={{ fontSize: "40px", margin: 0 }}>Suscripciones para equipos en crecimiento</h2>
           </div>
 
           <div
@@ -406,12 +393,12 @@ export default function Home() {
             >
               <h3>Starter</h3>
               <div style={{ fontSize: "34px", fontWeight: 800, marginBottom: "10px" }}>$29</div>
-              <p style={{ color: "#cbd5e1" }}>Perfect for testing strategic workflows.</p>
+              <p style={{ color: "#cbd5e1" }}>Ideal para explorar flujos estratégicos básicos.</p>
             </div>
 
             <div
               style={{
-                background: "linear-gradient(135deg, rgba(79,70,229,0.28), rgba(6,182,212,0.22))",
+                background: "linear-gradient(135deg, rgba(79,70,229,0.28), rgba(14,165,233,0.20))",
                 borderRadius: "22px",
                 padding: "24px",
                 border: "1px solid rgba(103,232,249,0.25)",
@@ -419,7 +406,7 @@ export default function Home() {
             >
               <h3>Pro</h3>
               <div style={{ fontSize: "34px", fontWeight: 800, marginBottom: "10px" }}>$79</div>
-              <p style={{ color: "#e2e8f0" }}>For SMEs that need advanced analysis and simulation.</p>
+              <p style={{ color: "#e2e8f0" }}>Para PyMEs que necesitan análisis avanzado y simulación estratégica.</p>
             </div>
 
             <div
@@ -431,8 +418,8 @@ export default function Home() {
               }}
             >
               <h3>Enterprise</h3>
-              <div style={{ fontSize: "34px", fontWeight: 800, marginBottom: "10px" }}>Custom</div>
-              <p style={{ color: "#cbd5e1" }}>Custom dashboards, team workflows and strategic support.</p>
+              <div style={{ fontSize: "34px", fontWeight: 800, marginBottom: "10px" }}>Personalizado</div>
+              <p style={{ color: "#cbd5e1" }}>Dashboards a medida, equipos, flujos internos y soporte estratégico.</p>
             </div>
           </div>
         </div>
