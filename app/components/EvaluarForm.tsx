@@ -1,147 +1,79 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { supabase } from "../lib/supabase";
+import { useState } from "react"
+import { supabase } from "../lib/supabase"
 
 export default function EvaluarForm() {
-  const [correo, setCorreo] = useState("");
-  const [rol, setRol] = useState("");
-  const [tamano, setTamano] = useState("");
-  const [mensaje, setMensaje] = useState("");
-  const [cargando, setCargando] = useState(false);
 
-  async function enviarLead() {
-    if (!correo || !rol || !tamano) {
-      setMensaje("Por favor completa todos los campos.");
-      return;
-    }
+const [correo,setCorreo] = useState("")
+const [rol,setRol] = useState("")
+const [tamano,setTamano] = useState("")
+const [mensaje,setMensaje] = useState("")
 
-    setCargando(true);
-    setMensaje("Enviando...");
+async function enviarLead(){
 
-    const { error } = await supabase.from("leads").insert([
-      {
-        correo,
-        rol,
-        tamano_empresa: tamano,
-      },
-    ]);
+console.log("CLICK DETECTADO")
 
-    if (error) {
-      setMensaje("Error al enviar: " + error.message);
-      setCargando(false);
-      return;
-    }
+const { error } = await supabase
+.from("leads")
+.insert([
+{
+correo: correo,
+rol: rol,
+tamano_empresa: tamano
+}
+])
 
-    setMensaje("Información enviada correctamente.");
-    setCorreo("");
-    setRol("");
-    setTamano("");
-    setCargando(false);
-  }
-
-  return (
-    <div style={formCard}>
-      <label style={label}>Correo</label>
-      <input
-        type="email"
-        style={input}
-        placeholder="tu@correo.com"
-        value={correo}
-        onChange={(e) => setCorreo(e.target.value)}
-      />
-
-      <label style={label}>Rol</label>
-      <select
-        style={input}
-        value={rol}
-        onChange={(e) => setRol(e.target.value)}
-      >
-        <option value="">Selecciona una opción</option>
-        <option value="Dueño / Fundador">Dueño / Fundador</option>
-        <option value="Dirección general">Dirección general</option>
-        <option value="Finanzas">Finanzas</option>
-        <option value="Operaciones">Operaciones</option>
-      </select>
-
-      <label style={label}>Tamaño de empresa</label>
-      <select
-        style={input}
-        value={tamano}
-        onChange={(e) => setTamano(e.target.value)}
-      >
-        <option value="">Selecciona una opción</option>
-        <option value="1–10 empleados">1–10 empleados</option>
-        <option value="11–50 empleados">11–50 empleados</option>
-        <option value="51–250 empleados">51–250 empleados</option>
-        <option value="250+ empleados">250+ empleados</option>
-      </select>
-
-      <button
-        type="button"
-        disabled={cargando}
-        onClick={enviarLead}
-        style={{
-          ...primaryBig,
-          width: "100%",
-          marginTop: "12px",
-          opacity: cargando ? 0.7 : 1,
-          position: "relative",
-          zIndex: 10,
-        }}
-      >
-        {cargando ? "Enviando..." : "Evaluar mi empresa"}
-      </button>
-
-      {mensaje && <p style={mensajeStyle}>{mensaje}</p>}
-    </div>
-  );
+if(error){
+console.log(error)
+setMensaje("Error al enviar")
+return
 }
 
-const formCard: React.CSSProperties = {
-  background: "rgba(255,255,255,0.04)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: "26px",
-  padding: "22px",
-  position: "relative",
-  zIndex: 5,
-};
+setMensaje("Enviado correctamente")
+setCorreo("")
+setRol("")
+setTamano("")
 
-const label: React.CSSProperties = {
-  display: "block",
-  marginBottom: "8px",
-  marginTop: "10px",
-  fontWeight: 700,
-  color: "white",
-};
+}
 
-const input: React.CSSProperties = {
-  width: "100%",
-  padding: "16px 18px",
-  borderRadius: "16px",
-  border: "1px solid rgba(255,255,255,0.10)",
-  background: "rgba(2,6,23,0.55)",
-  color: "#f8fafc",
-  fontSize: "16px",
-  outline: "none",
-  boxSizing: "border-box",
-};
+return(
 
-const primaryBig: React.CSSProperties = {
-  background: "linear-gradient(135deg, #4f46e5, #8b5cf6)",
-  border: "none",
-  color: "white",
-  padding: "18px 28px",
-  borderRadius: "999px",
-  fontWeight: 800,
-  fontSize: "18px",
-  cursor: "pointer",
-  boxShadow: "0 18px 40px rgba(99,102,241,0.28)",
-};
+<div style={{display:"flex",flexDirection:"column",gap:"12px"}}>
 
-const mensajeStyle: React.CSSProperties = {
-  marginTop: "14px",
-  color: "#cbd5e1",
-  fontSize: "14px",
-  lineHeight: 1.5,
-};
+<input
+placeholder="correo"
+value={correo}
+onChange={(e)=>setCorreo(e.target.value)}
+/>
+
+<select
+value={rol}
+onChange={(e)=>setRol(e.target.value)}
+>
+<option value="">rol</option>
+<option value="dueño">dueño</option>
+<option value="director">director</option>
+</select>
+
+<select
+value={tamano}
+onChange={(e)=>setTamano(e.target.value)}
+>
+<option value="">tamano</option>
+<option value="1-10">1-10</option>
+<option value="10-50">10-50</option>
+<option value="50+">50+</option>
+</select>
+
+<button onClick={enviarLead}>
+ENVIAR
+</button>
+
+<p>{mensaje}</p>
+
+</div>
+
+)
+
+}
