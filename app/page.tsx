@@ -1,96 +1,314 @@
-    export default function Home() {
+export default function Home() {
   return (
     <main
       style={{
-        fontFamily: "Arial, sans-serif",
         minHeight: "100vh",
-        margin: 0,
         background:
-          "linear-gradient(135deg, #f8fbff 0%, #eef4ff 45%, #f9f5ff 100%)",
-        color: "#111827",
+          "radial-gradient(circle at top left, rgba(111,76,255,0.16), transparent 30%), radial-gradient(circle at top right, rgba(0,194,255,0.12), transparent 25%), linear-gradient(180deg, #f8fbff 0%, #eef3ff 100%)",
+        color: "#0f172a",
+        fontFamily: "Arial, sans-serif",
       }}
     >
-      <section
+      <nav
         style={{
-          maxWidth: "1100px",
+          maxWidth: "1200px",
           margin: "0 auto",
-          padding: "70px 24px 40px 24px",
+          padding: "24px 24px 0 24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
-        <div
-          style={{
-            display: "inline-block",
-            background: "#e0e7ff",
-            color: "#4338ca",
-            padding: "8px 14px",
-            borderRadius: "999px",
-            fontSize: "14px",
-            fontWeight: 700,
-            marginBottom: "20px",
-          }}
-        >
-          AI Strategic Intelligence
+        <div style={{ fontSize: "28px", fontWeight: 800, letterSpacing: "-1px" }}>
+          Prediqta
         </div>
 
-        <h1
-          style={{
-            fontSize: "64px",
-            lineHeight: 1.05,
-            margin: "0 0 18px 0",
-            fontWeight: 800,
-            letterSpacing: "-2px",
-          }}
-        >
-          Prediqta
-        </h1>
-
-        <p
-          style={{
-            fontSize: "24px",
-            lineHeight: 1.5,
-            maxWidth: "760px",
-            color: "#374151",
-            marginBottom: "30px",
-          }}
-        >
-          Plataforma de inteligencia estratégica para anticipar riesgos,
-          simular escenarios y tomar decisiones de negocio con mayor claridad.
-        </p>
-
-        <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "55px" }}>
-          <button
-            style={{
-              background: "#4f46e5",
-              color: "white",
-              border: "none",
-              padding: "14px 22px",
-              borderRadius: "12px",
-              fontSize: "16px",
-              fontWeight: 700,
-              cursor: "pointer",
-              boxShadow: "0 10px 30px rgba(79,70,229,0.25)",
-            }}
+        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+          <a
+            href="#features"
+            style={{ textDecoration: "none", color: "#334155", fontWeight: 600 }}
           >
-            Explore platform
-          </button>
-
+            Features
+          </a>
+          <a
+            href="#pricing"
+            style={{ textDecoration: "none", color: "#334155", fontWeight: 600 }}
+          >
+            Pricing
+          </a>
           <button
             style={{
               background: "white",
-              color: "#111827",
-              border: "1px solid #d1d5db",
-              padding: "14px 22px",
-              borderRadius: "12px",
-              fontSize: "16px",
+              border: "1px solid #dbe2f0",
+              color: "#0f172a",
+              padding: "10px 16px",
+              borderRadius: "999px",
               fontWeight: 700,
               cursor: "pointer",
             }}
           >
-            View prototype
+            Log in
+          </button>
+          <button
+            style={{
+              background: "linear-gradient(135deg, #4f46e5, #06b6d4)",
+              border: "none",
+              color: "white",
+              padding: "10px 18px",
+              borderRadius: "999px",
+              fontWeight: 700,
+              cursor: "pointer",
+              boxShadow: "0 12px 30px rgba(79,70,229,0.25)",
+            }}
+          >
+            Get started
           </button>
         </div>
+      </nav>
 
-        <section
+      <section
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "60px 24px 40px 24px",
+          display: "grid",
+          gridTemplateColumns: "1.1fr 0.9fr",
+          gap: "40px",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <div
+            style={{
+              display: "inline-block",
+              padding: "8px 14px",
+              borderRadius: "999px",
+              background: "rgba(79,70,229,0.10)",
+              color: "#4338ca",
+              fontWeight: 700,
+              fontSize: "14px",
+              marginBottom: "18px",
+            }}
+          >
+            Strategic Intelligence Platform
+          </div>
+
+          <h1
+            style={{
+              fontSize: "72px",
+              lineHeight: 1,
+              margin: "0 0 18px 0",
+              letterSpacing: "-3px",
+              fontWeight: 800,
+            }}
+          >
+            Predict better.
+            <br />
+            Decide smarter.
+          </h1>
+
+          <p
+            style={{
+              fontSize: "24px",
+              lineHeight: 1.5,
+              color: "#334155",
+              maxWidth: "720px",
+              marginBottom: "30px",
+            }}
+          >
+            Prediqta helps businesses anticipate risks, simulate scenarios and
+            make data-backed strategic decisions with AI-powered intelligence.
+          </p>
+
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "30px" }}>
+            <button
+              style={{
+                background: "linear-gradient(135deg, #4f46e5, #06b6d4)",
+                color: "white",
+                border: "none",
+                padding: "16px 24px",
+                borderRadius: "14px",
+                fontSize: "16px",
+                fontWeight: 700,
+                cursor: "pointer",
+                boxShadow: "0 14px 40px rgba(79,70,229,0.25)",
+              }}
+            >
+              Start free trial
+            </button>
+
+            <button
+              style={{
+                background: "white",
+                color: "#0f172a",
+                border: "1px solid #dbe2f0",
+                padding: "16px 24px",
+                borderRadius: "14px",
+                fontSize: "16px",
+                fontWeight: 700,
+                cursor: "pointer",
+              }}
+            >
+              Watch product demo
+            </button>
+          </div>
+
+          <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", color: "#475569" }}>
+            <div><strong style={{ color: "#0f172a" }}>AI Advisor</strong> for business decisions</div>
+            <div><strong style={{ color: "#0f172a" }}>Scenario</strong> simulation tools</div>
+            <div><strong style={{ color: "#0f172a" }}>Risk</strong> radar & alerts</div>
+          </div>
+        </div>
+
+        <div>
+          <div
+            style={{
+              background: "rgba(255,255,255,0.72)",
+              border: "1px solid rgba(255,255,255,0.7)",
+              borderRadius: "28px",
+              padding: "20px",
+              boxShadow: "0 25px 60px rgba(15,23,42,0.10)",
+              backdropFilter: "blur(14px)",
+            }}
+          >
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "16px",
+                marginBottom: "16px",
+              }}
+            >
+              <div
+                style={{
+                  background: "#0f172a",
+                  color: "white",
+                  borderRadius: "20px",
+                  padding: "20px",
+                  minHeight: "140px",
+                }}
+              >
+                <div style={{ fontSize: "14px", opacity: 0.75, marginBottom: "8px" }}>
+                  Strategic Health
+                </div>
+                <div style={{ fontSize: "40px", fontWeight: 800 }}>87%</div>
+                <div style={{ color: "#67e8f9", marginTop: "10px" }}>+12% this month</div>
+              </div>
+
+              <div
+                style={{
+                  background: "white",
+                  borderRadius: "20px",
+                  padding: "20px",
+                  minHeight: "140px",
+                  border: "1px solid #e2e8f0",
+                }}
+              >
+                <div style={{ fontSize: "14px", color: "#64748b", marginBottom: "12px" }}>
+                  Scenario comparison
+                </div>
+                <div style={{ display: "flex", alignItems: "end", gap: "10px", height: "80px" }}>
+                  <div style={{ width: "24px", height: "45px", background: "#c7d2fe", borderRadius: "8px" }} />
+                  <div style={{ width: "24px", height: "72px", background: "#818cf8", borderRadius: "8px" }} />
+                  <div style={{ width: "24px", height: "58px", background: "#22d3ee", borderRadius: "8px" }} />
+                  <div style={{ width: "24px", height: "85px", background: "#4f46e5", borderRadius: "8px" }} />
+                </div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                background: "white",
+                borderRadius: "22px",
+                padding: "20px",
+                border: "1px solid #e2e8f0",
+              }}
+            >
+              <div style={{ fontSize: "14px", color: "#64748b", marginBottom: "14px" }}>
+                Live decision workspace
+              </div>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1.2fr 0.8fr",
+                  gap: "14px",
+                }}
+              >
+                <div
+                  style={{
+                    background: "#f8fafc",
+                    borderRadius: "16px",
+                    padding: "16px",
+                    border: "1px solid #e2e8f0",
+                  }}
+                >
+                  <div style={{ fontWeight: 700, marginBottom: "10px" }}>
+                    AI Strategic Advisor
+                  </div>
+                  <div
+                    style={{
+                      background: "white",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: "12px",
+                      padding: "12px",
+                      color: "#475569",
+                      fontSize: "14px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    What is the best expansion strategy for a retail SME facing margin pressure?
+                  </div>
+                  <div
+                    style={{
+                      background: "#eef2ff",
+                      borderRadius: "12px",
+                      padding: "12px",
+                      color: "#3730a3",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Recommendation: prioritize high-margin categories, model two expansion paths, and monitor cash flow risk.
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    background: "#f8fafc",
+                    borderRadius: "16px",
+                    padding: "16px",
+                    border: "1px solid #e2e8f0",
+                  }}
+                >
+                  <div style={{ fontWeight: 700, marginBottom: "10px" }}>
+                    Risk Radar
+                  </div>
+                  <div style={{ color: "#ef4444", marginBottom: "8px" }}>● Margin erosion</div>
+                  <div style={{ color: "#f59e0b", marginBottom: "8px" }}>● Supplier dependency</div>
+                  <div style={{ color: "#22c55e" }}>● Demand opportunity</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="features"
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "30px 24px 70px 24px",
+        }}
+      >
+        <div style={{ marginBottom: "22px" }}>
+          <div style={{ color: "#4338ca", fontWeight: 700, marginBottom: "8px" }}>
+            Core capabilities
+          </div>
+          <h2 style={{ fontSize: "42px", margin: 0 }}>A platform built for strategic action</h2>
+        </div>
+
+        <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -99,64 +317,125 @@
         >
           <div
             style={{
-              background: "rgba(255,255,255,0.85)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255,255,255,0.6)",
-              borderRadius: "22px",
+              background: "rgba(255,255,255,0.82)",
+              borderRadius: "24px",
               padding: "28px",
-              boxShadow: "0 15px 40px rgba(0,0,0,0.08)",
+              border: "1px solid rgba(255,255,255,0.75)",
+              boxShadow: "0 18px 45px rgba(15,23,42,0.08)",
             }}
           >
             <div style={{ fontSize: "34px", marginBottom: "14px" }}>🤖</div>
-            <h2 style={{ margin: "0 0 10px 0", fontSize: "24px" }}>
-              Asesor estratégico de IA
-            </h2>
-            <p style={{ color: "#4b5563", lineHeight: 1.6, fontSize: "17px" }}>
-              Haga preguntas estratégicas y reciba insights impulsados por IA
-              para respaldar decisiones comerciales más inteligentes.
+            <h3 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>AI Strategic Advisor</h3>
+            <p style={{ color: "#475569", fontSize: "17px", lineHeight: 1.7 }}>
+              Ask complex business questions and receive structured recommendations powered by AI.
             </p>
           </div>
 
           <div
             style={{
-              background: "rgba(255,255,255,0.85)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255,255,255,0.6)",
-              borderRadius: "22px",
+              background: "rgba(255,255,255,0.82)",
+              borderRadius: "24px",
               padding: "28px",
-              boxShadow: "0 15px 40px rgba(0,0,0,0.08)",
+              border: "1px solid rgba(255,255,255,0.75)",
+              boxShadow: "0 18px 45px rgba(15,23,42,0.08)",
             }}
           >
             <div style={{ fontSize: "34px", marginBottom: "14px" }}>📊</div>
-            <h2 style={{ margin: "0 0 10px 0", fontSize: "24px" }}>
-              Simulador de escenarios
-            </h2>
-            <p style={{ color: "#4b5563", lineHeight: 1.6, fontSize: "17px" }}>
-              Pruebe distintos caminos de decisión y visualice resultados
-              potenciales antes de actuar.
+            <h3 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>Scenario Simulator</h3>
+            <p style={{ color: "#475569", fontSize: "17px", lineHeight: 1.7 }}>
+              Compare strategic paths, test assumptions and visualize outcomes before making decisions.
             </p>
           </div>
 
           <div
             style={{
-              background: "rgba(255,255,255,0.85)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255,255,255,0.6)",
-              borderRadius: "22px",
+              background: "rgba(255,255,255,0.82)",
+              borderRadius: "24px",
               padding: "28px",
-              boxShadow: "0 15px 40px rgba(0,0,0,0.08)",
+              border: "1px solid rgba(255,255,255,0.75)",
+              boxShadow: "0 18px 45px rgba(15,23,42,0.08)",
             }}
           >
             <div style={{ fontSize: "34px", marginBottom: "14px" }}>⚠️</div>
-            <h2 style={{ margin: "0 0 10px 0", fontSize: "24px" }}>
-              Radar de riesgo
-            </h2>
-            <p style={{ color: "#4b5563", lineHeight: 1.6, fontSize: "17px" }}>
-              Detecte riesgos y oportunidades estratégicas para mejorar la
-              resiliencia y la calidad de las decisiones.
+            <h3 style={{ fontSize: "28px", margin: "0 0 10px 0" }}>Risk Radar</h3>
+            <p style={{ color: "#475569", fontSize: "17px", lineHeight: 1.7 }}>
+              Detect critical threats and emerging opportunities to improve resilience and decision quality.
             </p>
           </div>
-        </section>
+        </div>
+      </section>
+
+      <section
+        id="pricing"
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 24px 90px 24px",
+        }}
+      >
+        <div
+          style={{
+            background: "#0f172a",
+            color: "white",
+            borderRadius: "30px",
+            padding: "36px",
+            boxShadow: "0 28px 80px rgba(15,23,42,0.18)",
+          }}
+        >
+          <div style={{ marginBottom: "24px" }}>
+            <div style={{ color: "#67e8f9", fontWeight: 700, marginBottom: "8px" }}>
+              Pricing
+            </div>
+            <h2 style={{ fontSize: "40px", margin: 0 }}>Flexible plans for growing teams</h2>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: "18px",
+            }}
+          >
+            <div
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                borderRadius: "22px",
+                padding: "24px",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              <h3>Starter</h3>
+              <div style={{ fontSize: "34px", fontWeight: 800, marginBottom: "10px" }}>$29</div>
+              <p style={{ color: "#cbd5e1" }}>Perfect for testing strategic workflows.</p>
+            </div>
+
+            <div
+              style={{
+                background: "linear-gradient(135deg, rgba(79,70,229,0.28), rgba(6,182,212,0.22))",
+                borderRadius: "22px",
+                padding: "24px",
+                border: "1px solid rgba(103,232,249,0.25)",
+              }}
+            >
+              <h3>Pro</h3>
+              <div style={{ fontSize: "34px", fontWeight: 800, marginBottom: "10px" }}>$79</div>
+              <p style={{ color: "#e2e8f0" }}>For SMEs that need advanced analysis and simulation.</p>
+            </div>
+
+            <div
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                borderRadius: "22px",
+                padding: "24px",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              <h3>Enterprise</h3>
+              <div style={{ fontSize: "34px", fontWeight: 800, marginBottom: "10px" }}>Custom</div>
+              <p style={{ color: "#cbd5e1" }}>Custom dashboards, team workflows and strategic support.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
