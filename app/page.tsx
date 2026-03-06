@@ -806,6 +806,8 @@ const ctaWrap: React.CSSProperties = {
   padding: "26px",
   background: "linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04))",
   border: "1px solid rgba(255,255,255,0.08)",
+  position: "relative",
+  zIndex: 2,
 };
 
 const formCard: React.CSSProperties = {
