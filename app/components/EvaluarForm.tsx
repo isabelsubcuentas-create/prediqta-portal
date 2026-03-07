@@ -37,14 +37,15 @@ export default function EvaluarForm() {
         return;
       }
 
-      setMensaje("Información enviada correctamente");
-      setCorreo("");
-      setRol("");
-      setTamano("");
-      setLoading(false);
-    } catch {
-      setMensaje("Error al enviar");
-      setLoading(false);
+setMensaje("Información enviada correctamente");
+setCorreo("");
+setRol("");
+setTamano("");
+setLoading(false);
+
+setTimeout(() => {
+  window.location.href = "/registro";
+}, 1200);
     }
   }
 
