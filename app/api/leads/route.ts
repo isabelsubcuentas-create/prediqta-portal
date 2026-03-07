@@ -3,12 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { correo, rol, tamano } = body;
+    const { correo, rol, tamano } = await req.json();
 
     if (!correo || !rol || !tamano) {
       return NextResponse.json(
-        { error: "Campos incompletos" },
+        { error: "Completa todos los campos" },
         { status: 400 }
       );
     }
@@ -41,4 +40,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
