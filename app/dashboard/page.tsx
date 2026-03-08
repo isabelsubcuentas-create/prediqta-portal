@@ -212,6 +212,7 @@ export default function DashboardPage() {
 
 const main: React.CSSProperties = {
   minHeight: "100vh",
+  overflowY: "auto",
   background:
     "radial-gradient(circle at top left, rgba(79,70,229,0.18), transparent 30%), linear-gradient(180deg,#020617,#020617)",
   padding: "32px 24px",
