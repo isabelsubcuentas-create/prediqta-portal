@@ -7,6 +7,10 @@ export default function DashboardPage() {
   const [correo, setCorreo] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const [mostrarAsesor, setMostrarAsesor] = useState(false);
+  const [pregunta, setPregunta] = useState("");
+  const [respuesta, setRespuesta] = useState("");
+
   useEffect(() => {
     async function revisarSesion() {
       const {
@@ -24,6 +28,47 @@ export default function DashboardPage() {
 
     revisarSesion();
   }, []);
+
+  function generarRespuesta() {
+    const texto = pregunta.toLowerCase();
+
+    if (!texto.trim()) {
+      setRespuesta("Escribe una pregunta para que Prediqta pueda analizarla.");
+      return;
+    }
+
+    if (texto.includes("liquidez") || texto.includes("flujo")) {
+      setRespuesta(
+        "Prediqta detecta que tu principal foco debe ser proteger liquidez antes de ejecutar crecimiento. Recomendación: revisar flujo de efectivo, reducir gastos no críticos y simular escenarios base, optimista y crítico antes de invertir."
+      );
+      return;
+    }
+
+    if (texto.includes("proveedor") || texto.includes("proveedores")) {
+      setRespuesta(
+        "Existe riesgo de dependencia operativa. Recomendación: diversificar proveedores clave, evaluar tiempos de entrega y crear un plan de respaldo para evitar interrupciones que afecten continuidad."
+      );
+      return;
+    }
+
+    if (texto.includes("crecimiento") || texto.includes("expandir")) {
+      setRespuesta(
+        "El crecimiento es viable, pero debe ejecutarse con disciplina financiera. Recomendación: validar capacidad operativa, capital de trabajo y escenarios de demanda antes de expandir."
+      );
+      return;
+    }
+
+    if (texto.includes("costos") || texto.includes("gastos")) {
+      setRespuesta(
+        "Prediqta sugiere priorizar eficiencia antes que recortes indiscriminados. Recomendación: identificar costos fijos presionados, gastos de bajo retorno y áreas donde puedas automatizar sin afectar servicio."
+      );
+      return;
+    }
+
+    setRespuesta(
+      "Prediqta recomienda estructurar esta decisión en tres capas: impacto financiero, riesgo operativo y capacidad de ejecución. Antes de actuar, compara escenarios, identifica riesgos prioritarios y define métricas para monitorear el resultado."
+    );
+  }
 
   if (loading) {
     return (
@@ -107,7 +152,9 @@ export default function DashboardPage() {
               Haz preguntas sobre decisiones empresariales y recibe
               recomendaciones estructuradas.
             </p>
-            <button style={button}>Abrir asesor</button>
+            <button style={button} onClick={() => setMostrarAsesor(!mostrarAsesor)}>
+              {mostrarAsesor ? "Cerrar asesor" : "Abrir asesor"}
+            </button>
           </section>
 
           <section style={toolCard}>
@@ -128,6 +175,36 @@ export default function DashboardPage() {
             <button style={button}>Abrir radar</button>
           </section>
         </div>
+
+        {mostrarAsesor && (
+          <section style={advisorCard}>
+            <p style={sectionEyebrow}>ASESOR ESTRATÉGICO DE IA</p>
+            <h3 style={advisorTitle}>Consulta estratégica</h3>
+            <p style={advisorText}>
+              Escribe una pregunta como:
+              “¿Debo expandirme?”, “¿Cómo mejorar liquidez?” o
+              “¿Qué hago si dependo de un proveedor clave?”
+            </p>
+
+            <textarea
+              value={pregunta}
+              onChange={(e) => setPregunta(e.target.value)}
+              placeholder="Escribe tu pregunta estratégica..."
+              style={textarea}
+            />
+
+            <button style={button} onClick={generarRespuesta}>
+              Analizar con Prediqta
+            </button>
+
+            {respuesta && (
+              <div style={responseBox}>
+                <p style={responseLabel}>Respuesta estratégica</p>
+                <p style={responseText}>{respuesta}</p>
+              </div>
+            )}
+          </section>
+        )}
       </div>
     </main>
   );
@@ -284,6 +361,7 @@ const toolsGrid: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
   gap: "24px",
+  marginBottom: "24px",
 };
 
 const toolCard: React.CSSProperties = {
@@ -304,6 +382,59 @@ const toolText: React.CSSProperties = {
   fontSize: "18px",
   lineHeight: 1.6,
   marginBottom: "24px",
+};
+
+const advisorCard: React.CSSProperties = {
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "28px",
+  padding: "28px",
+};
+
+const advisorTitle: React.CSSProperties = {
+  fontSize: "30px",
+  margin: "0 0 12px 0",
+};
+
+const advisorText: React.CSSProperties = {
+  color: "#cbd5e1",
+  fontSize: "17px",
+  lineHeight: 1.6,
+  marginBottom: "18px",
+};
+
+const textarea: React.CSSProperties = {
+  width: "100%",
+  minHeight: "140px",
+  padding: "16px",
+  borderRadius: "18px",
+  border: "1px solid rgba(255,255,255,0.10)",
+  background: "#0b1220",
+  color: "white",
+  fontSize: "16px",
+  boxSizing: "border-box",
+  marginBottom: "16px",
+};
+
+const responseBox: React.CSSProperties = {
+  marginTop: "20px",
+  background: "rgba(79,70,229,0.14)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "20px",
+  padding: "20px",
+};
+
+const responseLabel: React.CSSProperties = {
+  color: "#a78bfa",
+  fontWeight: 800,
+  margin: "0 0 10px 0",
+};
+
+const responseText: React.CSSProperties = {
+  color: "#f8fafc",
+  fontSize: "17px",
+  lineHeight: 1.7,
+  margin: 0,
 };
 
 const button: React.CSSProperties = {
