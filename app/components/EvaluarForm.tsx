@@ -37,15 +37,18 @@ export default function EvaluarForm() {
         return;
       }
 
-setMensaje("Información enviada correctamente");
-setCorreo("");
-setRol("");
-setTamano("");
-setLoading(false);
+      setMensaje("Información enviada correctamente");
+      setCorreo("");
+      setRol("");
+      setTamano("");
+      setLoading(false);
 
-setTimeout(() => {
-  window.location.href = "/registro";
-}, 1200);
+      setTimeout(() => {
+        window.location.href = "/registro";
+      }, 1200);
+    } catch {
+      setMensaje("Error al enviar");
+      setLoading(false);
     }
   }
 
@@ -61,7 +64,11 @@ setTimeout(() => {
       />
 
       <label style={label}>Rol</label>
-      <select value={rol} onChange={(e) => setRol(e.target.value)} style={input}>
+      <select
+        value={rol}
+        onChange={(e) => setRol(e.target.value)}
+        style={input}
+      >
         <option value="">Selecciona una opción</option>
         <option value="Dueño / Fundador">Dueño / Fundador</option>
         <option value="Dirección general">Dirección general</option>
@@ -70,7 +77,11 @@ setTimeout(() => {
       </select>
 
       <label style={label}>Tamaño de empresa</label>
-      <select value={tamano} onChange={(e) => setTamano(e.target.value)} style={input}>
+      <select
+        value={tamano}
+        onChange={(e) => setTamano(e.target.value)}
+        style={input}
+      >
         <option value="">Selecciona una opción</option>
         <option value="1–10 empleados">1–10 empleados</option>
         <option value="11–50 empleados">11–50 empleados</option>
