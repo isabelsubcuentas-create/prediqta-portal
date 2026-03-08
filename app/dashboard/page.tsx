@@ -242,6 +242,13 @@ const eyebrow: React.CSSProperties = {
   fontWeight: "bold"
 };
 
+const sectionEyebrow: React.CSSProperties = {
+  color: "#8b5cf6",
+  fontWeight: "bold",
+  fontSize: "14px",
+  marginBottom: "10px"
+};
+
 const accountCard: React.CSSProperties = {
   background: "#111827",
   padding: "20px",
