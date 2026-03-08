@@ -42,10 +42,7 @@ export default function EvaluarForm() {
       setRol("");
       setTamano("");
       setLoading(false);
-
-      setTimeout(() => {
-        window.location.href = "/registro";
-      }, 1200);
+      window.location.href = "/registro";
     } catch {
       setMensaje("Error al enviar");
       setLoading(false);
