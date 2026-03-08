@@ -41,11 +41,15 @@ export default function RegistroPage() {
       password,
     });
 
-    if (error) {
-      setMensaje(error.message);
-      setLoading(false);
-      return;
-    }
+if (error) {
+  if (error.message.includes("rate limit")) {
+    setMensaje("Registro temporalmente limitado. Usa una cuenta de prueba o intenta más tarde.");
+  } else {
+    setMensaje(error.message);
+  }
+  setLoading(false);
+  return;
+}
 
     setMensaje("Cuenta creada correctamente. Redirigiendo a login...");
     setLoading(false);
