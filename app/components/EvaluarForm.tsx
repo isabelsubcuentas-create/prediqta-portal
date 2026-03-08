@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function EvaluarForm() {
+  const router = useRouter();
+
   const [correo, setCorreo] = useState("");
   const [rol, setRol] = useState("");
   const [tamano, setTamano] = useState("");
@@ -42,7 +45,9 @@ export default function EvaluarForm() {
       setRol("");
       setTamano("");
       setLoading(false);
-      window.location.href = "/registro";
+
+      router.push("/registro");
+      return;
     } catch {
       setMensaje("Error al enviar");
       setLoading(false);
