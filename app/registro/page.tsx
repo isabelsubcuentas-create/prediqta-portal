@@ -41,10 +41,7 @@ export default function RegistroPage() {
 
     setMensaje("Cuenta creada correctamente.");
     setLoading(false);
-
-    setTimeout(() => {
-      router.push("/login");
-    }, 1000);
+    window.location.href = "/login";
   }
 
   return (
