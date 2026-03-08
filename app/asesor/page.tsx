@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "../lib/supabase";
 
 type Msg = {
@@ -11,14 +11,12 @@ type Msg = {
 export default function AsesorPage() {
   const [correo, setCorreo] = useState("");
   const [loading, setLoading] = useState(true);
-  const [sending, setSending] = useState(false);
-
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "assistant",
       content:
-        "Hola. Soy el Asesor Estratégico IA de Prediqta. Puedo ayudarte con retención de talento en automotriz, pero también responder preguntas generales. ¿Qué quieres analizar?",
+        "Hola, soy el Asesor Prediqta. Puedo ayudarte con retención de talento en automotriz: rotación, ausentismo, clima, liderazgo, capacitación y permanencia.",
     },
   ]);
 
@@ -46,58 +44,62 @@ export default function AsesorPage() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  async function enviarPregunta() {
-    const texto = input.trim();
-    if (!texto || sending) return;
+  const ejemplos = useMemo(
+    () => [
+      "¿Cómo reduzco la rotación en planta?",
+      "¿Qué hago con el ausentismo?",
+      "¿Cómo mejorar el clima laboral por turno?",
+      "¿Cómo retener técnicos especializados?",
+    ],
+    []
+  );
 
-    const nuevosMensajes: Msg[] = [...messages, { role: "user", content: texto }];
-    setMessages(nuevosMensajes);
-    setInput("");
-    setSending(true);
+  function generarRespuesta(textoOriginal: string) {
+    const texto = textoOriginal.toLowerCase().trim();
 
-    try {
-      const res = await fetch("/api/asesor", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: nuevosMensajes,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setMessages([
-          ...nuevosMensajes,
-          {
-            role: "assistant",
-            content: data.error || "Ocurrió un error al generar la respuesta.",
-          },
-        ]);
-        setSending(false);
-        return;
-      }
-
-      setMessages([
-        ...nuevosMensajes,
-        {
-          role: "assistant",
-          content: data.reply,
-        },
-      ]);
-      setSending(false);
-    } catch {
-      setMessages([
-        ...nuevosMensajes,
-        {
-          role: "assistant",
-          content: "Ocurrió un error al conectar con el asesor.",
-        },
-      ]);
-      setSending(false);
+    if (!texto) {
+      return "Escribe una pregunta para poder ayudarte.";
     }
+
+    if (texto.includes("rotación") || texto.includes("renuncia") || texto.includes("salida")) {
+      return "Prediqta detecta riesgo de rotación. En automotriz recomendamos analizar causas por turno, supervisor y puesto crítico. Prioriza entrevistas de salida, revisión de liderazgo directo y acciones de permanencia en áreas operativas clave.";
+    }
+
+    if (texto.includes("ausentismo") || texto.includes("faltas")) {
+      return "Prediqta recomienda revisar ausentismo por línea, turno y jefe inmediato. En automotriz el ausentismo impacta continuidad y productividad, así que conviene combinar seguimiento de causas, incentivos de asistencia y ajustes en clima laboral.";
+    }
+
+    if (texto.includes("clima") || texto.includes("cultura")) {
+      return "Prediqta sugiere medir clima laboral por célula de trabajo y no solo de forma general. En el sector automotriz suelen influir el liderazgo inmediato, la carga operativa, los turnos y la percepción de reconocimiento.";
+    }
+
+    if (texto.includes("capacitación") || texto.includes("desarrollo")) {
+      return "Prediqta recomienda vincular capacitación con permanencia. En automotriz, planes de desarrollo técnico, certificaciones internas y rutas de crecimiento ayudan a reducir fuga de talento especializado.";
+    }
+
+    if (texto.includes("liderazgo") || texto.includes("supervisor")) {
+      return "Prediqta detecta que el liderazgo directo es una palanca crítica de retención. Recomendamos fortalecer habilidades de supervisión, retroalimentación y manejo de equipos por turno.";
+    }
+
+    if (texto.includes("retención") || texto.includes("talento")) {
+      return "Prediqta recomienda una estrategia de retención basada en tres frentes: liderazgo efectivo, experiencia del colaborador y desarrollo técnico. En automotriz, conservar talento clave requiere intervenir en turnos, jefes y reconocimiento.";
+    }
+
+    return "Prediqta recomienda analizar esta decisión desde retención, clima laboral e impacto operativo. En automotriz, cualquier acción sobre talento debe evaluar continuidad, desempeño y permanencia del personal crítico.";
+  }
+
+  function enviarPregunta() {
+    const texto = input.trim();
+    if (!texto) return;
+
+    const nuevaConversacion: Msg[] = [
+      ...messages,
+      { role: "user", content: texto },
+      { role: "assistant", content: generarRespuesta(texto) },
+    ];
+
+    setMessages(nuevaConversacion);
+    setInput("");
   }
 
   if (loading) {
@@ -116,7 +118,7 @@ export default function AsesorPage() {
             <p style={eyebrow}>ASESOR PREDIQTA</p>
             <h1 style={title}>Asesor estratégico IA</h1>
             <p style={subtitle}>
-              Chat inteligente para retención de talento en automotriz
+              Retención de talento para el sector automotriz
             </p>
           </div>
 
@@ -128,15 +130,16 @@ export default function AsesorPage() {
         </div>
 
         <div style={examplesRow}>
-          <button type="button" style={chip} onClick={() => setInput("¿Cómo reduzco la rotación en planta?")}>
-            ¿Cómo reduzco la rotación en planta?
-          </button>
-          <button type="button" style={chip} onClick={() => setInput("¿Qué hago con el ausentismo?")}>
-            ¿Qué hago con el ausentismo?
-          </button>
-          <button type="button" style={chip} onClick={() => setInput("¿Cómo mejorar el clima laboral por turno?")}>
-            ¿Cómo mejorar el clima laboral por turno?
-          </button>
+          {ejemplos.map((ejemplo) => (
+            <button
+              key={ejemplo}
+              type="button"
+              style={chip}
+              onClick={() => setInput(ejemplo)}
+            >
+              {ejemplo}
+            </button>
+          ))}
         </div>
 
         <section style={chatCard}>
@@ -151,13 +154,6 @@ export default function AsesorPage() {
                 </div>
               </div>
             ))}
-
-            {sending && (
-              <div style={assistantMsgWrap}>
-                <div style={assistantMsg}>Prediqta está pensando...</div>
-              </div>
-            )}
-
             <div ref={bottomRef} />
           </div>
 
@@ -165,7 +161,7 @@ export default function AsesorPage() {
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Escribe tu pregunta..."
+              placeholder="Escribe tu pregunta estratégica..."
               style={textarea}
             />
 
