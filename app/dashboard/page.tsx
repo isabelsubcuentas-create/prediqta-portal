@@ -1,340 +1,333 @@
-export default function Dashboard() {
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
+
+export default function DashboardPage() {
+  const [correo, setCorreo] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function revisarSesion() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        window.location.href = "/login";
+        return;
+      }
+
+      setCorreo(user.email || "");
+      setLoading(false);
+    }
+
+    revisarSesion();
+  }, []);
+
+  if (loading) {
+    return (
+      <main style={main}>
+        <div style={card}>
+          <h1 style={title}>Cargando dashboard...</h1>
+        </div>
+      </main>
+    );
+  }
+
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background:
-          "radial-gradient(circle at top left, rgba(67,97,238,0.18), transparent 30%), radial-gradient(circle at top right, rgba(16,185,129,0.12), transparent 28%), linear-gradient(180deg,#020617,#020617)",
-        color: "white",
-        fontFamily: "Arial, sans-serif",
-        padding: "28px",
-      }}
-    >
-      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-        <header
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "28px",
-            gap: "20px",
-            flexWrap: "wrap",
-          }}
-        >
+    <main style={main}>
+      <div style={wrap}>
+        <div style={topBar}>
           <div>
-            <div style={{ color: "#8b5cf6", fontWeight: 700, marginBottom: "8px" }}>
-              PANEL EJECUTIVO
-            </div>
-            <h1 style={{ fontSize: "54px", margin: 0, letterSpacing: "-2px" }}>
-              Dashboard Prediqta
-            </h1>
-            <p style={{ color: "#94a3b8", fontSize: "18px", marginTop: "10px" }}>
+            <p style={eyebrow}>PANEL EJECUTIVO</p>
+            <h1 style={heroTitle}>Dashboard Prediqta</h1>
+            <p style={heroSubtitle}>
               Centro de inteligencia estratégica para tu empresa
             </p>
           </div>
 
-          <div
-            style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "20px",
-              padding: "16px 20px",
-              minWidth: "260px",
-            }}
-          >
-            <div style={{ color: "#94a3b8", fontSize: "14px", marginBottom: "8px" }}>
-              Cuenta activa
-            </div>
-            <div style={{ fontSize: "22px", fontWeight: 700 }}>Ana Alonso</div>
-            <div style={{ color: "#cbd5e1", marginTop: "6px" }}>Prediqta Pro</div>
+          <div style={accountCard}>
+            <p style={accountLabel}>Cuenta activa</p>
+            <h2 style={accountName}>{correo}</h2>
+            <p style={accountPlan}>Prediqta Pro</p>
           </div>
-        </header>
+        </div>
 
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.2fr 0.8fr",
-            gap: "20px",
-            marginBottom: "22px",
-          }}
-        >
-          <div
-            style={{
-              background: "linear-gradient(135deg, rgba(79,70,229,0.20), rgba(14,165,233,0.10))",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "28px",
-              padding: "28px",
-              boxShadow: "0 20px 50px rgba(0,0,0,0.20)",
-            }}
-          >
-            <div style={{ color: "#a5b4fc", fontWeight: 700, marginBottom: "12px" }}>
-              RESUMEN GENERAL
-            </div>
-            <h2 style={{ fontSize: "38px", margin: "0 0 12px 0", lineHeight: 1.1 }}>
+        <div style={grid}>
+          <section style={bigCard}>
+            <p style={sectionEyebrow}>RESUMEN GENERAL</p>
+            <h2 style={bigTitle}>
               Tu empresa muestra una condición estratégica estable
             </h2>
-            <p style={{ color: "#cbd5e1", fontSize: "18px", lineHeight: 1.6, maxWidth: "700px" }}>
-              Actualmente Prediqta detecta una posición saludable, pero con riesgos
-              moderados en liquidez y dependencia de proveedores. Se recomienda
-              simular escenarios antes de expandir operaciones.
+            <p style={bigText}>
+              Actualmente Prediqta detecta una posición saludable, pero con
+              riesgos moderados en liquidez y dependencia de proveedores.
+              Se recomienda simular escenarios antes de expandir operaciones.
             </p>
 
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-                gap: "14px",
-                marginTop: "24px",
-              }}
-            >
-              <div style={metricCard}>
-                <div style={metricLabel}>Continuidad</div>
-                <div style={metricValue}>78</div>
-                <div style={{ color: "#22c55e" }}>Estable</div>
+            <div style={statsGrid}>
+              <div style={statBox}>
+                <p style={statLabel}>Continuidad</p>
+                <h3 style={statNumber}>78</h3>
+                <p style={{ ...statStatus, color: "#22c55e" }}>Estable</p>
               </div>
 
-              <div style={metricCard}>
-                <div style={metricLabel}>Liquidez proyectada</div>
-                <div style={metricValue}>+6%</div>
-                <div style={{ color: "#38bdf8" }}>Base</div>
+              <div style={statBox}>
+                <p style={statLabel}>Liquidez proyectada</p>
+                <h3 style={statNumber}>+6%</h3>
+                <p style={{ ...statStatus, color: "#38bdf8" }}>Base</p>
               </div>
 
-              <div style={metricCard}>
-                <div style={metricLabel}>Riesgos activos</div>
-                <div style={metricValue}>4</div>
-                <div style={{ color: "#f59e0b" }}>Prioritarios</div>
+              <div style={statBox}>
+                <p style={statLabel}>Riesgos activos</p>
+                <h3 style={statNumber}>4</h3>
+                <p style={{ ...statStatus, color: "#f59e0b" }}>Prioritarios</p>
               </div>
             </div>
-          </div>
+          </section>
 
-          <div
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "28px",
-              padding: "24px",
-            }}
-          >
-            <div style={{ color: "#8b5cf6", fontWeight: 700, marginBottom: "14px" }}>
-              PERFIL DE EMPRESA
-            </div>
+          <section style={sideCard}>
+            <p style={sectionEyebrow}>PERFIL DE EMPRESA</p>
 
-            <div style={infoRow}>
-              <span style={infoLabel}>Empresa</span>
-              <span>Prediqta Demo Company</span>
-            </div>
+            <div style={row}><span>Empresa</span><strong>Prediqta Demo Company</strong></div>
+            <div style={row}><span>Sector</span><strong>Servicios / Consultoría</strong></div>
+            <div style={row}><span>Tamaño</span><strong>PyME</strong></div>
+            <div style={row}><span>Plan</span><strong>Pro</strong></div>
+            <div style={row}><span>Usuario</span><strong>{correo}</strong></div>
+            <div style={row}><span>Última simulación</span><strong>Hace 2 horas</strong></div>
+          </section>
+        </div>
 
-            <div style={infoRow}>
-              <span style={infoLabel}>Sector</span>
-              <span>Servicios / Consultoría</span>
-            </div>
-
-            <div style={infoRow}>
-              <span style={infoLabel}>Tamaño</span>
-              <span>PyME</span>
-            </div>
-
-            <div style={infoRow}>
-              <span style={infoLabel}>Plan</span>
-              <span>Pro</span>
-            </div>
-
-            <div style={infoRow}>
-              <span style={infoLabel}>Usuario</span>
-              <span>Ana Alonso</span>
-            </div>
-
-            <div style={infoRow}>
-              <span style={infoLabel}>Última simulación</span>
-              <span>Hace 2 horas</span>
-            </div>
-          </div>
-        </section>
-
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-            gap: "20px",
-            marginBottom: "22px",
-          }}
-        >
-          <div style={toolCard}>
-            <div style={toolTag}>HERRAMIENTA</div>
+        <div style={toolsGrid}>
+          <section style={toolCard}>
+            <p style={sectionEyebrow}>HERRAMIENTA</p>
             <h3 style={toolTitle}>Asesor estratégico de IA</h3>
             <p style={toolText}>
-              Haz preguntas sobre decisiones empresariales y recibe recomendaciones
-              estructuradas.
+              Haz preguntas sobre decisiones empresariales y recibe
+              recomendaciones estructuradas.
             </p>
-            <a href="/advisor" style={toolButton}>
-              Abrir asesor
-            </a>
-          </div>
+            <button style={button}>Abrir asesor</button>
+          </section>
 
-          <div style={toolCard}>
-            <div style={toolTag}>HERRAMIENTA</div>
+          <section style={toolCard}>
+            <p style={sectionEyebrow}>HERRAMIENTA</p>
             <h3 style={toolTitle}>Simulador de escenarios</h3>
             <p style={toolText}>
               Compara rutas estratégicas optimista, base y crítica antes de ejecutar.
             </p>
-            <a href="/simulador" style={toolButton}>
-              Abrir simulador
-            </a>
-          </div>
+            <button style={button}>Abrir simulador</button>
+          </section>
 
-          <div style={toolCard}>
-            <div style={toolTag}>HERRAMIENTA</div>
+          <section style={toolCard}>
+            <p style={sectionEyebrow}>HERRAMIENTA</p>
             <h3 style={toolTitle}>Radar de riesgos</h3>
             <p style={toolText}>
               Detecta riesgos prioritarios y oportunidades estratégicas para tu negocio.
             </p>
-            <a href="/riesgos" style={toolButton}>
-              Abrir radar
-            </a>
-          </div>
-        </section>
-
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "20px",
-          }}
-        >
-          <div
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "26px",
-              padding: "24px",
-            }}
-          >
-            <div style={sectionMiniTitle}>RECOMENDACIÓN DE IA</div>
-            <h3 style={{ fontSize: "28px", marginBottom: "14px" }}>
-              Acción sugerida para esta semana
-            </h3>
-            <p style={{ color: "#cbd5e1", lineHeight: 1.7, fontSize: "17px" }}>
-              Antes de invertir en crecimiento, valida tu capacidad de caja en tres
-              escenarios y revisa dependencia de proveedores clave. Tu mayor punto de
-              atención hoy no es ventas, sino resiliencia operativa.
-            </p>
-          </div>
-
-          <div
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "26px",
-              padding: "24px",
-            }}
-          >
-            <div style={sectionMiniTitle}>RIESGOS PRIORITARIOS</div>
-
-            <div style={riskItem}>
-              <span style={{ color: "#ef4444" }}>●</span>
-              <span>Presión en flujo de efectivo</span>
-            </div>
-
-            <div style={riskItem}>
-              <span style={{ color: "#f59e0b" }}>●</span>
-              <span>Dependencia de proveedor estratégico</span>
-            </div>
-
-            <div style={riskItem}>
-              <span style={{ color: "#38bdf8" }}>●</span>
-              <span>Baja trazabilidad de decisiones</span>
-            </div>
-
-            <div style={riskItem}>
-              <span style={{ color: "#22c55e" }}>●</span>
-              <span>Oportunidad de crecimiento en nuevos segmentos</span>
-            </div>
-          </div>
-        </section>
+            <button style={button}>Abrir radar</button>
+          </section>
+        </div>
       </div>
     </main>
   );
 }
 
-const metricCard: React.CSSProperties = {
-  background: "rgba(255,255,255,0.05)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: "20px",
-  padding: "18px",
+const main: React.CSSProperties = {
+  minHeight: "100vh",
+  background:
+    "radial-gradient(circle at top left, rgba(79,70,229,0.18), transparent 30%), linear-gradient(180deg,#020617,#020617)",
+  padding: "32px 24px",
+  fontFamily: "Arial, sans-serif",
+  color: "white",
 };
 
-const metricLabel: React.CSSProperties = {
-  color: "#94a3b8",
-  fontSize: "14px",
-  marginBottom: "8px",
+const wrap: React.CSSProperties = {
+  maxWidth: "1280px",
+  margin: "0 auto",
 };
 
-const metricValue: React.CSSProperties = {
-  fontSize: "38px",
+const topBar: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr 320px",
+  gap: "24px",
+  alignItems: "start",
+  marginBottom: "28px",
+};
+
+const eyebrow: React.CSSProperties = {
+  color: "#8b5cf6",
   fontWeight: 800,
-  marginBottom: "6px",
+  fontSize: "14px",
+  letterSpacing: "0.06em",
+  margin: "0 0 10px 0",
 };
 
-const infoRow: React.CSSProperties = {
+const heroTitle: React.CSSProperties = {
+  fontSize: "72px",
+  lineHeight: 1,
+  letterSpacing: "-3px",
+  margin: "0 0 12px 0",
+};
+
+const heroSubtitle: React.CSSProperties = {
+  color: "#cbd5e1",
+  fontSize: "20px",
+  margin: 0,
+};
+
+const accountCard: React.CSSProperties = {
+  background: "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(16,185,129,0.06))",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "24px",
+  padding: "24px",
+};
+
+const accountLabel: React.CSSProperties = {
+  color: "#93c5fd",
+  margin: "0 0 12px 0",
+  fontSize: "16px",
+};
+
+const accountName: React.CSSProperties = {
+  margin: "0 0 10px 0",
+  fontSize: "22px",
+  wordBreak: "break-word",
+};
+
+const accountPlan: React.CSSProperties = {
+  margin: 0,
+  color: "#cbd5e1",
+  fontSize: "18px",
+};
+
+const grid: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1.3fr 0.9fr",
+  gap: "24px",
+  marginBottom: "24px",
+};
+
+const bigCard: React.CSSProperties = {
+  background: "linear-gradient(135deg, rgba(79,70,229,0.16), rgba(255,255,255,0.04))",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "32px",
+  padding: "32px",
+};
+
+const sideCard: React.CSSProperties = {
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "32px",
+  padding: "32px",
+};
+
+const sectionEyebrow: React.CSSProperties = {
+  color: "#8b5cf6",
+  fontWeight: 800,
+  fontSize: "16px",
+  margin: "0 0 20px 0",
+};
+
+const bigTitle: React.CSSProperties = {
+  fontSize: "44px",
+  lineHeight: 1.1,
+  margin: "0 0 18px 0",
+};
+
+const bigText: React.CSSProperties = {
+  color: "#e2e8f0",
+  fontSize: "18px",
+  lineHeight: 1.6,
+  marginBottom: "26px",
+};
+
+const statsGrid: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "18px",
+};
+
+const statBox: React.CSSProperties = {
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "24px",
+  padding: "24px",
+};
+
+const statLabel: React.CSSProperties = {
+  color: "#cbd5e1",
+  fontSize: "16px",
+  margin: "0 0 10px 0",
+};
+
+const statNumber: React.CSSProperties = {
+  fontSize: "48px",
+  margin: "0 0 10px 0",
+};
+
+const statStatus: React.CSSProperties = {
+  fontWeight: 700,
+  margin: 0,
+};
+
+const row: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-  padding: "12px 0",
-  borderBottom: "1px solid rgba(255,255,255,0.06)",
-  color: "#e2e8f0",
+  gap: "16px",
+  padding: "18px 0",
+  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  color: "#cbd5e1",
 };
 
-const infoLabel: React.CSSProperties = {
-  color: "#94a3b8",
+const toolsGrid: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "24px",
 };
 
 const toolCard: React.CSSProperties = {
   background: "rgba(255,255,255,0.04)",
   border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: "26px",
-  padding: "24px",
-  minHeight: "240px",
-};
-
-const toolTag: React.CSSProperties = {
-  color: "#8b5cf6",
-  fontWeight: 700,
-  fontSize: "13px",
-  marginBottom: "10px",
+  borderRadius: "28px",
+  padding: "28px",
 };
 
 const toolTitle: React.CSSProperties = {
   fontSize: "28px",
-  marginBottom: "10px",
+  lineHeight: 1.2,
+  margin: "0 0 16px 0",
 };
 
 const toolText: React.CSSProperties = {
-  color: "#cbd5e1",
-  lineHeight: 1.7,
+  color: "#e2e8f0",
+  fontSize: "18px",
+  lineHeight: 1.6,
   marginBottom: "24px",
 };
 
-const toolButton: React.CSSProperties = {
-  display: "inline-block",
-  textDecoration: "none",
+const button: React.CSSProperties = {
+  background: "linear-gradient(135deg, #4f46e5, #8b5cf6)",
+  border: "none",
   color: "white",
-  background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-  padding: "14px 18px",
-  borderRadius: "14px",
-  fontWeight: 700,
+  padding: "14px 22px",
+  borderRadius: "999px",
+  fontWeight: 800,
+  fontSize: "16px",
+  cursor: "pointer",
 };
 
-const sectionMiniTitle: React.CSSProperties = {
-  color: "#8b5cf6",
-  fontWeight: 700,
-  marginBottom: "12px",
-  fontSize: "13px",
+const card: React.CSSProperties = {
+  maxWidth: "520px",
+  margin: "120px auto",
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "24px",
+  padding: "28px",
+  textAlign: "center",
 };
 
-const riskItem: React.CSSProperties = {
-  display: "flex",
-  gap: "10px",
-  alignItems: "center",
-  padding: "12px 0",
-  borderBottom: "1px solid rgba(255,255,255,0.06)",
-  color: "#e2e8f0",
+const title: React.CSSProperties = {
+  fontSize: "36px",
+  margin: 0,
 };
