@@ -1,16 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
-import { useRouter } from "next/navigation";
 
 export default function RegistroPage() {
-  const router = useRouter();
-
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [loading, setLoading] = useState(false);
+  const [registroExitoso, setRegistroExitoso] = useState(false);
+
+  useEffect(() => {
+    if (registroExitoso) {
+      const timer = setTimeout(() => {
+        window.location.replace("/login");
+      }, 800);
+
+      return () => clearTimeout(timer);
+    }
+  }, [registroExitoso]);
 
   async function handleRegistro(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,9 +47,9 @@ export default function RegistroPage() {
       return;
     }
 
-    setMensaje("Cuenta creada correctamente.");
+    setMensaje("Cuenta creada correctamente. Redirigiendo a login...");
     setLoading(false);
-    window.location.href = "/login";
+    setRegistroExitoso(true);
   }
 
   return (
@@ -75,6 +83,12 @@ export default function RegistroPage() {
         </form>
 
         {mensaje ? <p style={message}>{mensaje}</p> : null}
+
+        {registroExitoso ? (
+          <a href="/login" style={secondaryButton}>
+            Ir a login ahora
+          </a>
+        ) : null}
 
         <p style={footerText}>
           ¿Ya tienes cuenta? <a href="/login" style={link}>Inicia sesión</a>
@@ -148,6 +162,22 @@ const button: React.CSSProperties = {
   fontWeight: 800,
   fontSize: "17px",
   cursor: "pointer",
+};
+
+const secondaryButton: React.CSSProperties = {
+  display: "block",
+  marginTop: "14px",
+  width: "100%",
+  textAlign: "center",
+  background: "rgba(255,255,255,0.06)",
+  border: "1px solid rgba(255,255,255,0.10)",
+  color: "#ffffff",
+  padding: "14px 18px",
+  borderRadius: "999px",
+  fontWeight: 700,
+  fontSize: "16px",
+  textDecoration: "none",
+  boxSizing: "border-box",
 };
 
 const message: React.CSSProperties = {
