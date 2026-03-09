@@ -101,31 +101,103 @@ export default function SimuladorPage() {
         </p>
       )}
 
-      {resultado && (
+{resultado && (
+  <div
+    style={{
+      marginTop: "40px",
+      padding: "30px",
+      borderRadius: "20px",
+      background: "rgba(255,255,255,0.04)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      maxWidth: "700px",
+    }}
+  >
+    <h2 style={{ marginBottom: "10px" }}>Escenarios generados</h2>
+
+    <p style={{ color: "#cbd5f5", marginBottom: "30px" }}>
+      {resultado.texto}
+    </p>
+
+    <h3 style={{ marginBottom: "20px" }}>
+      Impacto estimado en productividad
+    </h3>
+
+    {/* OPTIMISTA */}
+    <div style={{ marginBottom: "18px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <span>Escenario optimista</span>
+        <strong>{resultado.optimista}%</strong>
+      </div>
+
+      <div
+        style={{
+          height: "10px",
+          background: "#1e293b",
+          borderRadius: "10px",
+          marginTop: "6px",
+        }}
+      >
         <div
           style={{
-            marginTop: "40px",
-            padding: "20px",
-            borderRadius: "20px",
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            width: `${resultado.optimista}%`,
+            height: "100%",
+            background: "#22c55e",
+            borderRadius: "10px",
           }}
-        >
-          <h2>Escenarios generados</h2>
+        />
+      </div>
+    </div>
 
-          <p style={{ marginTop: "10px" }}>
-            {resultado.texto}
-          </p>
+    {/* MODERADO */}
+    <div style={{ marginBottom: "18px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <span>Escenario moderado</span>
+        <strong>{resultado.moderado}%</strong>
+      </div>
 
-          <div style={{ marginTop: "20px" }}>
-            <h3>Impacto estimado en productividad</h3>
+      <div
+        style={{
+          height: "10px",
+          background: "#1e293b",
+          borderRadius: "10px",
+          marginTop: "6px",
+        }}
+      >
+        <div
+          style={{
+            width: `${resultado.moderado}%`,
+            height: "100%",
+            background: "#f59e0b",
+            borderRadius: "10px",
+          }}
+        />
+      </div>
+    </div>
 
-            <p>Escenario optimista: {resultado.optimista}%</p>
-            <p>Escenario moderado: {resultado.moderado}%</p>
-            <p>Escenario pesimista: {resultado.pesimista}%</p>
-          </div>
-        </div>
-      )}
-    </main>
-  );
-}
+    {/* PESIMISTA */}
+    <div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <span>Escenario pesimista</span>
+        <strong>{resultado.pesimista}%</strong>
+      </div>
+
+      <div
+        style={{
+          height: "10px",
+          background: "#1e293b",
+          borderRadius: "10px",
+          marginTop: "6px",
+        }}
+      >
+        <div
+          style={{
+            width: `${resultado.pesimista}%`,
+            height: "100%",
+            background: "#ef4444",
+            borderRadius: "10px",
+          }}
+        />
+      </div>
+    </div>
+  </div>
+)}
