@@ -111,8 +111,6 @@ setPlan(planAccion)
 
 }
 
-/* estilos */
-
 const container = {
 minHeight:"100vh",
 background:"linear-gradient(120deg,#0f172a,#020617)",
@@ -122,11 +120,22 @@ fontFamily:"system-ui"
 }
 
 const card = {
-background:"rgba(255,255,255,0.03)",
+background:"rgba(255,255,255,0.04)",
 border:"1px solid rgba(255,255,255,0.08)",
 borderRadius:"16px",
-padding:"30px",
-marginTop:"40px"
+padding:"32px",
+marginTop:"40px",
+maxWidth:"900px"
+}
+
+const selectStyle = {
+marginTop:"8px",
+padding:"12px",
+borderRadius:"8px",
+background:"#020617",
+color:"white",
+border:"1px solid rgba(255,255,255,0.1)",
+width:"240px"
 }
 
 return(
@@ -143,46 +152,50 @@ color:"transparent"
 Diagnóstico Organizacional
 </h1>
 
-<p style={{marginTop:"10px",color:"#cbd5f5"}}>
-Evalúa el estado actual del talento humano y genera un plan de acción estratégico.
+<p style={{
+marginTop:"10px",
+color:"#cbd5f5",
+maxWidth:"700px"
+}}>
+Evalúa el estado actual del talento humano y genera un plan de acción estratégico para mejorar la estabilidad y productividad de la organización.
 </p>
 
 <div style={card}>
 
 <p>Nivel de rotación de personal</p>
-<select onChange={(e)=>setRotacion(e.target.value)}>
+<select style={selectStyle} onChange={(e)=>setRotacion(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="baja">Baja</option>
 <option value="media">Media</option>
 <option value="alta">Alta</option>
 </select>
 
-<p style={{marginTop:"20px"}}>Clima organizacional</p>
-<select onChange={(e)=>setClima(e.target.value)}>
+<p style={{marginTop:"22px"}}>Clima organizacional</p>
+<select style={selectStyle} onChange={(e)=>setClima(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="alto">Alto</option>
 <option value="medio">Medio</option>
 <option value="bajo">Bajo</option>
 </select>
 
-<p style={{marginTop:"20px"}}>Nivel de liderazgo</p>
-<select onChange={(e)=>setLiderazgo(e.target.value)}>
+<p style={{marginTop:"22px"}}>Nivel de liderazgo</p>
+<select style={selectStyle} onChange={(e)=>setLiderazgo(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="alto">Alto</option>
 <option value="medio">Medio</option>
 <option value="bajo">Bajo</option>
 </select>
 
-<p style={{marginTop:"20px"}}>Nivel de capacitación</p>
-<select onChange={(e)=>setCapacitacion(e.target.value)}>
+<p style={{marginTop:"22px"}}>Nivel de capacitación</p>
+<select style={selectStyle} onChange={(e)=>setCapacitacion(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="alto">Alto</option>
 <option value="medio">Medio</option>
 <option value="bajo">Bajo</option>
 </select>
 
-<p style={{marginTop:"20px"}}>Nivel de productividad</p>
-<select onChange={(e)=>setProductividad(e.target.value)}>
+<p style={{marginTop:"22px"}}>Nivel de productividad</p>
+<select style={selectStyle} onChange={(e)=>setProductividad(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="alto">Alto</option>
 <option value="medio">Medio</option>
@@ -200,7 +213,8 @@ borderRadius:"10px",
 background:"linear-gradient(90deg,#7c3aed,#3b82f6)",
 color:"white",
 border:"none",
-cursor:"pointer"
+cursor:"pointer",
+fontWeight:"600"
 }}
 >
 Generar diagnóstico
@@ -210,8 +224,8 @@ Generar diagnóstico
 
 <div style={{
 marginTop:"40px",
-padding:"20px",
-background:"rgba(255,255,255,0.03)",
+padding:"22px",
+background:"rgba(255,255,255,0.04)",
 borderRadius:"12px"
 }}>
 
@@ -219,7 +233,7 @@ borderRadius:"12px"
 
 <p style={{
 marginTop:"10px",
-lineHeight:"1.6",
+lineHeight:"1.7",
 color:"#e2e8f0"
 }}>
 {diagnostico}
@@ -233,7 +247,7 @@ color:"#e2e8f0"
 
 <div style={{
 marginTop:"25px",
-padding:"20px",
+padding:"22px",
 background:"rgba(59,130,246,0.12)",
 borderRadius:"12px"
 }}>
@@ -243,7 +257,7 @@ borderRadius:"12px"
 <p style={{
 marginTop:"10px",
 whiteSpace:"pre-line",
-lineHeight:"1.6",
+lineHeight:"1.7",
 color:"#e2e8f0"
 }}>
 {plan}
@@ -257,7 +271,6 @@ color:"#e2e8f0"
 
 </main>
 
-  
 )
 
 }
