@@ -120,7 +120,18 @@ return (
 <main style={container}>
 
 <div style={header}>
-<h1 style={{fontSize:"40px"}}>Panel estratégico</h1>
+<h1 style={{
+fontSize:"52px",
+fontWeight:"800",
+letterSpacing:"-1px",
+background:"linear-gradient(90deg,#ffffff,#c4b5fd,#60a5fa)",
+WebkitBackgroundClip:"text",
+backgroundClip:"text",
+color:"transparent",
+lineHeight:"1.1"
+}}>
+Panel estratégico
+</h1>
 
 <div style={userCard}>
 test9.9@gmail.com
@@ -129,16 +140,55 @@ test9.9@gmail.com
 </div>
 </div>
 
-<p style={description}>
-Prediqta detecta presión moderada en permanencia de personal,
-variaciones en clima por supervisión y riesgo potencial en áreas
-críticas de operación automotriz.
+<p style={{
+marginTop:"18px",
+fontSize:"18px",
+color:"#cbd5f5",
+maxWidth:"720px",
+lineHeight:"1.6"
+}}>
+Prediqta detecta señales tempranas en talento humano, clima organizacional
+y riesgos operativos para anticipar decisiones críticas antes de que
+impacten la continuidad de la empresa.
 </p>
 
-<div style={badges}>
-<span style={badge}>Talent Analytics</span>
-<span style={{...badge, background:"rgba(56,189,248,0.2)"}}>Predicción IA</span>
-<span style={{...badge, background:"rgba(34,197,94,0.2)"}}>Sector Automotriz</span>
+<div style={{
+display:"flex",
+gap:"12px",
+marginTop:"22px"
+}}>
+
+<span style={{
+background:"linear-gradient(90deg,#7c3aed,#6366f1)",
+padding:"8px 16px",
+borderRadius:"999px",
+fontSize:"13px",
+fontWeight:"500",
+boxShadow:"0 4px 20px rgba(124,58,237,0.5)"
+}}>
+Talent Analytics
+</span>
+
+<span style={{
+background:"rgba(56,189,248,0.2)",
+padding:"8px 16px",
+borderRadius:"999px",
+fontSize:"13px",
+border:"1px solid rgba(56,189,248,0.3)"
+}}>
+Predicción IA
+</span>
+
+<span style={{
+background:"rgba(34,197,94,0.2)",
+padding:"8px 16px",
+borderRadius:"999px",
+fontSize:"13px",
+border:"1px solid rgba(34,197,94,0.3)"
+}}>
+Sector Automotriz
+</span>
+
 </div>
 
 {/* KPIs */}
