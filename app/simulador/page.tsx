@@ -8,15 +8,26 @@ const [continuidad,setContinuidad] = useState<number | null>(null)
 const [liquidez,setLiquidez] = useState<number | null>(null)
 const [riesgos,setRiesgos] = useState<number | null>(null)
 
+const [grafica,setGrafica] = useState<number[]>([])
+
 function generarSimulacion(){
 
 const nuevaContinuidad = Math.floor(Math.random()*30)+60
 const nuevaLiquidez = Math.floor(Math.random()*10)+1
 const nuevosRiesgos = Math.floor(Math.random()*5)+1
 
+const nuevaGrafica = [
+Math.random()*80+20,
+Math.random()*80+20,
+Math.random()*80+20,
+Math.random()*80+20,
+Math.random()*80+20
+]
+
 setContinuidad(nuevaContinuidad)
 setLiquidez(nuevaLiquidez)
 setRiesgos(nuevosRiesgos)
+setGrafica(nuevaGrafica)
 
 }
 
@@ -84,8 +95,6 @@ Simulador de Estrategias de Talento
 Evalúa el impacto de decisiones estratégicas en talento humano antes de implementarlas.
 </p>
 
-{/* PANEL PRINCIPAL */}
-
 <div style={{...card,marginTop:"40px"}}>
 
 <label>Selecciona estrategia</label>
@@ -110,39 +119,37 @@ border:"1px solid rgba(255,255,255,0.1)"
 
 <br/>
 
-<button style={button}>
+<button style={button} onClick={generarSimulacion}>
 Generar simulación
 </button>
-
-{/* KPIs */}
 
 <div style={grid}>
 
 <div style={kpi}>
 <p>Continuidad</p>
-<h2 style={{fontSize:"32px"}}>78</h2>
+<h2>{continuidad ?? "--"}</h2>
 <span style={{color:"#22c55e"}}>Estable</span>
 </div>
 
 <div style={kpi}>
 <p>Liquidez</p>
-<h2 style={{fontSize:"32px"}}>+6%</h2>
+<h2>{liquidez ? `+${liquidez}%` : "--"}</h2>
 <span style={{color:"#22c55e"}}>Base</span>
 </div>
 
 <div style={kpi}>
 <p>Riesgos</p>
-<h2 style={{fontSize:"32px"}}>4</h2>
+<h2>{riesgos ?? "--"}</h2>
 <span style={{color:"#38bdf8"}}>Prioritarios</span>
 </div>
 
 </div>
 
-{/* GRAFICA */}
-
 <div style={{marginTop:"40px"}}>
 
-<p style={{marginBottom:"15px"}}>Impacto proyectado por escenario</p>
+<p style={{marginBottom:"15px"}}>
+Impacto proyectado por escenario
+</p>
 
 <div style={{
 display:"flex",
@@ -151,11 +158,18 @@ gap:"20px",
 height:"120px"
 }}>
 
-<div style={{width:"40px",height:"60%",background:"#7c3aed",borderRadius:"6px"}}></div>
-<div style={{width:"40px",height:"45%",background:"#6366f1",borderRadius:"6px"}}></div>
-<div style={{width:"40px",height:"30%",background:"#3b82f6",borderRadius:"6px"}}></div>
-<div style={{width:"40px",height:"70%",background:"#7c3aed",borderRadius:"6px"}}></div>
-<div style={{width:"40px",height:"50%",background:"#6366f1",borderRadius:"6px"}}></div>
+{grafica.map((valor,i)=>(
+<div
+key={i}
+style={{
+width:"40px",
+height:`${valor}%`,
+background:i%2===0 ? "#7c3aed" : "#3b82f6",
+borderRadius:"6px",
+transition:"0.4s"
+}}
+></div>
+))}
 
 </div>
 
