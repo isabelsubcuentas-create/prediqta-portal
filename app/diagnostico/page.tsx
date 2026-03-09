@@ -21,88 +21,100 @@ let planAccion = ""
 if(rotacion === "alta"){
 
 problema =
-"La organización presenta un nivel alto de rotación de personal. Esto puede afectar la continuidad operativa, aumentar los costos de reclutamiento y reducir la productividad."
+"La empresa presenta un nivel alto de rotación de personal. Esto suele indicar problemas en retención de talento, clima laboral o falta de desarrollo profesional. Una rotación elevada genera costos adicionales en reclutamiento, capacitación y pérdida de conocimiento dentro de la organización."
 
 planAccion =
-`Plan de acción recomendado:
+`Plan de acción estratégico:
 
-Semana 1-2
-Analizar las causas de rotación mediante encuestas internas y entrevistas de salida.
+Diagnóstico inicial
+Analizar las principales causas de rotación mediante entrevistas de salida, encuestas internas y revisión de indicadores de recursos humanos.
 
-Semana 3-4
-Implementar un programa piloto de retención con incentivos o mejoras en condiciones laborales.
+Acción inmediata
+Revisar condiciones laborales, oportunidades de crecimiento y carga de trabajo en las áreas con mayor rotación.
 
-Mes 2
-Capacitar supervisores en liderazgo y gestión de equipos.
+Desarrollo de liderazgo
+Capacitar a supervisores y líderes de equipo en gestión de talento, comunicación efectiva y liderazgo.
 
-Mes 3
-Monitorear indicadores de rotación y satisfacción laboral.`
+Programa de retención
+Implementar incentivos no solo económicos, sino también desarrollo profesional, reconocimiento y planes de carrera.
+
+Seguimiento
+Medir mensualmente indicadores como rotación, satisfacción del empleado y productividad para evaluar el impacto de las mejoras.`
 
 }
 
 else if(clima === "bajo"){
 
 problema =
-"El diagnóstico indica un clima organizacional bajo. Esto puede afectar la motivación del personal, la colaboración entre equipos y la productividad general."
+"El diagnóstico indica un clima organizacional bajo. Esto puede afectar directamente la motivación del personal, la colaboración entre equipos y la eficiencia operativa. Cuando el clima laboral es negativo, aumenta el riesgo de rotación, conflictos internos y disminución del rendimiento."
 
 planAccion =
-`Plan de acción recomendado:
+`Plan de acción estratégico:
 
-Semana 1-2
-Realizar una evaluación de clima organizacional.
+Evaluación del clima
+Aplicar encuestas internas para identificar problemas en comunicación, liderazgo o ambiente laboral.
 
-Semana 3-4
-Implementar programas de reconocimiento y comunicación interna.
+Comunicación organizacional
+Establecer canales de comunicación claros entre colaboradores y líderes para mejorar la transparencia y la confianza.
 
-Mes 2
-Desarrollar talleres de trabajo en equipo.
+Reconocimiento del talento
+Implementar programas de reconocimiento para destacar el trabajo y esfuerzo de los empleados.
 
-Mes 3
-Evaluar mejoras en satisfacción y compromiso laboral.`
+Fortalecimiento de equipos
+Desarrollar actividades de integración y talleres de trabajo colaborativo.
+
+Seguimiento
+Medir periódicamente el clima organizacional para verificar mejoras y detectar nuevas áreas de oportunidad.`
 
 }
 
 else if(liderazgo === "bajo"){
 
 problema =
-"El nivel de liderazgo en supervisores parece limitado. Esto puede generar problemas de coordinación, comunicación y gestión de equipos."
+"El análisis sugiere que el nivel de liderazgo dentro de la organización es limitado. Esto puede generar falta de dirección en los equipos, problemas de comunicación y dificultades para alcanzar objetivos estratégicos."
 
 planAccion =
-`Plan de acción recomendado:
+`Plan de acción estratégico:
 
-Semana 1-2
-Identificar supervisores que requieren capacitación.
+Evaluación de líderes
+Identificar supervisores o líderes que necesiten desarrollo en habilidades de gestión.
 
-Semana 3-4
-Implementar un programa de formación en liderazgo.
+Capacitación en liderazgo
+Implementar programas de formación en liderazgo, toma de decisiones y manejo de equipos.
 
-Mes 2
-Aplicar mentorías entre líderes experimentados y nuevos supervisores.
+Mentoría interna
+Asignar líderes experimentados como mentores para desarrollar nuevas capacidades de liderazgo.
 
-Mes 3
-Evaluar mejoras en desempeño del equipo.`
+Claridad de objetivos
+Establecer metas claras para cada equipo y mejorar la comunicación de la estrategia organizacional.
+
+Evaluación continua
+Monitorear desempeño de liderazgo mediante retroalimentación de equipos y resultados operativos.`
 
 }
 
 else{
 
 problema =
-"La organización presenta condiciones relativamente estables en talento humano. Sin embargo, siempre es recomendable fortalecer procesos de desarrollo profesional y capacitación."
+"El diagnóstico indica que la organización se encuentra en una situación relativamente estable en términos de talento humano. Sin embargo, incluso en escenarios estables es fundamental fortalecer continuamente las capacidades del equipo para mantener competitividad y crecimiento."
 
 planAccion =
-`Plan de acción recomendado:
+`Plan de acción estratégico:
 
-Semana 1-2
-Evaluar habilidades actuales del personal.
+Desarrollo profesional
+Crear programas de capacitación continua para mejorar habilidades técnicas y de liderazgo.
 
-Semana 3-4
-Diseñar programas de capacitación.
+Innovación organizacional
+Fomentar nuevas ideas y mejoras en procesos para mantener competitividad.
 
-Mes 2
-Implementar desarrollo profesional interno.
+Gestión del talento
+Identificar empleados con alto potencial y desarrollar planes de crecimiento profesional.
 
-Mes 3
-Medir impacto en productividad y compromiso.`
+Cultura organizacional
+Fortalecer valores organizacionales y colaboración entre equipos.
+
+Monitoreo de indicadores
+Dar seguimiento a métricas de productividad, satisfacción del empleado y desempeño organizacional.`
 
 }
 
