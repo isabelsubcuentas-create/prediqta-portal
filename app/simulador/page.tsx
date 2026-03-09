@@ -7,10 +7,8 @@ export default function Simulador() {
 const [continuidad,setContinuidad] = useState<number | null>(null)
 const [liquidez,setLiquidez] = useState<number | null>(null)
 const [riesgos,setRiesgos] = useState<number | null>(null)
-
+const [grafica,setGrafica] = useState<number[]>([30,50,40,60,45])
 const [explicacion,setExplicacion] = useState("")
-
-const [grafica,setGrafica] = useState<number[]>([])
 
 function generarSimulacion(){
 
@@ -31,29 +29,29 @@ setLiquidez(nuevaLiquidez)
 setRiesgos(nuevosRiesgos)
 setGrafica(nuevaGrafica)
 
-let texto = "Resultados de la simulación:\n\n"
+let texto = ""
 
-texto += "La simulación analiza cómo podría impactar la estrategia seleccionada en tres aspectos importantes de la empresa: la continuidad operativa, la liquidez y el nivel de riesgos relacionados con el talento humano.\n\n"
+texto += "La simulación analiza el posible impacto de la estrategia seleccionada en tres factores clave de la organización: continuidad operativa, liquidez y riesgos organizacionales.\n\n"
 
 if(nuevaContinuidad >= 80){
-texto += "Continuidad operativa: La empresa podría mantener sus operaciones funcionando de forma estable si se implementa esta estrategia.\n\n"
+texto += "Continuidad operativa: El resultado indica una situación estable. La empresa tendría buenas probabilidades de mantener sus operaciones funcionando sin interrupciones importantes.\n\n"
 }else{
-texto += "Continuidad operativa: Podrían existir algunos desafíos para mantener la estabilidad operativa, por lo que sería importante monitorear el clima laboral y la organización del trabajo.\n\n"
+texto += "Continuidad operativa: El resultado muestra una estabilidad moderada. Se recomienda monitorear factores internos como clima laboral o carga de trabajo.\n\n"
 }
 
 if(nuevaLiquidez >= 6){
-texto += "Liquidez: La estrategia podría generar beneficios económicos o mejorar la eficiencia financiera de la empresa.\n\n"
+texto += "Liquidez: El impacto financiero proyectado es positivo. La estrategia podría mejorar la eficiencia económica o reducir costos.\n\n"
 }else{
-texto += "Liquidez: El impacto financiero sería moderado, por lo que los beneficios económicos podrían tomar tiempo en reflejarse.\n\n"
+texto += "Liquidez: El impacto financiero sería moderado y los beneficios podrían verse en el mediano plazo.\n\n"
 }
 
 if(nuevosRiesgos >= 3){
-texto += "Riesgos: Se detectan algunos riesgos organizacionales que deben gestionarse para evitar problemas en el futuro.\n\n"
+texto += "Riesgos: Se detectan algunos riesgos organizacionales que deberían gestionarse adecuadamente para evitar problemas futuros.\n\n"
 }else{
-texto += "Riesgos: El nivel de riesgo proyectado es bajo, por lo que la estrategia parece relativamente segura.\n\n"
+texto += "Riesgos: El nivel de riesgo proyectado es bajo, lo que indica que la estrategia parece relativamente segura para la organización.\n\n"
 }
 
-texto += "Interpretación general: Esta simulación ayuda a anticipar cómo una decisión estratégica podría afectar a la empresa antes de implementarla en la realidad."
+texto += "Interpretación general: Esta simulación permite anticipar posibles efectos de una decisión estratégica antes de implementarla en la empresa."
 
 setExplicacion(texto)
 
@@ -61,48 +59,26 @@ setExplicacion(texto)
 
 const container = {
 minHeight:"100vh",
-padding:"50px",
-background:`
-radial-gradient(circle at 20% 10%, rgba(124,58,237,0.25), transparent 40%),
-radial-gradient(circle at 80% 0%, rgba(56,189,248,0.20), transparent 40%),
-#020617
-`,
+background:"linear-gradient(120deg,#0f172a,#020617)",
+padding:"60px",
 color:"white",
-fontFamily:"Inter, sans-serif"
+fontFamily:"system-ui"
 }
 
 const card = {
-background:"rgba(15,23,42,0.7)",
-backdropFilter:"blur(12px)",
-padding:"30px",
-borderRadius:"20px",
+background:"rgba(255,255,255,0.03)",
 border:"1px solid rgba(255,255,255,0.08)",
-boxShadow:"0 20px 60px rgba(0,0,0,0.6)"
+borderRadius:"16px",
+padding:"30px",
+marginTop:"40px"
 }
 
-const grid = {
-display:"grid",
-gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-gap:"20px",
-marginTop:"25px"
-}
-
-const kpi = {
-background:"rgba(15,23,42,0.7)",
-padding:"20px",
-borderRadius:"14px",
-border:"1px solid rgba(255,255,255,0.08)"
-}
-
-const button = {
-marginTop:"20px",
-padding:"12px 24px",
+const metricCard = {
+flex:1,
+background:"rgba(255,255,255,0.02)",
+border:"1px solid rgba(255,255,255,0.06)",
 borderRadius:"12px",
-border:"none",
-background:"linear-gradient(90deg,#7c3aed,#6366f1,#3b82f6)",
-color:"white",
-fontWeight:"600",
-cursor:"pointer"
+padding:"20px"
 }
 
 return (
@@ -110,80 +86,86 @@ return (
 <main style={container}>
 
 <h1 style={{
-fontSize:"42px",
+fontSize:"48px",
 fontWeight:"800",
-background:"linear-gradient(90deg,#fff,#a78bfa,#60a5fa)",
+background:"linear-gradient(90deg,#c4b5fd,#60a5fa)",
 WebkitBackgroundClip:"text",
 color:"transparent"
 }}>
 Simulador de Estrategias de Talento
 </h1>
 
-<p style={{color:"#cbd5f5",marginTop:"10px"}}>
+<p style={{marginTop:"10px",color:"#cbd5f5"}}>
 Evalúa el impacto de decisiones estratégicas en talento humano antes de implementarlas.
 </p>
 
-<div style={{...card,marginTop:"40px"}}>
+<div style={card}>
 
-<label>Selecciona estrategia</label>
-
-<br/>
+<p>Selecciona estrategia</p>
 
 <select style={{
 marginTop:"10px",
 padding:"10px",
-borderRadius:"10px",
 background:"#020617",
 color:"white",
-border:"1px solid rgba(255,255,255,0.1)"
+borderRadius:"8px"
 }}>
-
-<option>Implementar IA en RRHH</option>
 <option>Programa de retención</option>
 <option>Capacitación liderazgo</option>
-<option>Optimización turnos</option>
-
+<option>Implementar IA en RRHH</option>
 </select>
 
 <br/>
 
-<button style={button} onClick={generarSimulacion}>
+<button
+onClick={generarSimulacion}
+style={{
+marginTop:"20px",
+padding:"14px 28px",
+borderRadius:"10px",
+background:"linear-gradient(90deg,#7c3aed,#3b82f6)",
+color:"white",
+border:"none",
+cursor:"pointer"
+}}
+>
 Generar simulación
 </button>
 
-<div style={grid}>
+<div style={{
+display:"flex",
+gap:"20px",
+marginTop:"30px"
+}}>
 
-<div style={kpi}>
+<div style={metricCard}>
 <p>Continuidad</p>
-<h2>{continuidad ?? "--"}</h2>
+<h2>{continuidad ?? "-"}</h2>
 <span style={{color:"#22c55e"}}>Estable</span>
 </div>
 
-<div style={kpi}>
+<div style={metricCard}>
 <p>Liquidez</p>
-<h2>{liquidez ? `+${liquidez}%` : "--"}</h2>
+<h2>{liquidez ? `+${liquidez}%` : "-"}</h2>
 <span style={{color:"#22c55e"}}>Base</span>
 </div>
 
-<div style={kpi}>
+<div style={metricCard}>
 <p>Riesgos</p>
-<h2>{riesgos ?? "--"}</h2>
+<h2>{riesgos ?? "-"}</h2>
 <span style={{color:"#38bdf8"}}>Prioritarios</span>
 </div>
 
 </div>
 
-<div style={{marginTop:"40px"}}>
-
-<p style={{marginBottom:"15px"}}>
-Impacto proyectado por escenario
-</p>
+<p style={{marginTop:"40px"}}>Impacto proyectado por escenario</p>
 
 <div style={{
 display:"flex",
 alignItems:"end",
 gap:"20px",
-height:"120px"
+height:"120px",
+marginTop:"20px"
 }}>
 
 {grafica.map((valor,i)=>(
@@ -198,9 +180,11 @@ transition:"0.4s"
 }}
 ></div>
 ))}
+
 </div>
 
 {explicacion && (
+
 <div style={{
 marginTop:"40px",
 padding:"24px",
@@ -209,30 +193,20 @@ background:"rgba(255,255,255,0.03)",
 border:"1px solid rgba(255,255,255,0.08)"
 }}>
 
-<h3 style={{
-fontSize:"20px",
-marginBottom:"12px",
-background:"linear-gradient(90deg,#a78bfa,#60a5fa)",
-WebkitBackgroundClip:"text",
-color:"transparent"
-}}>
-Interpretación de la simulación
-</h3>
+<h3>Interpretación de la simulación</h3>
 
 <p style={{
 color:"#cbd5f5",
 lineHeight:"1.7",
-fontSize:"15px",
 whiteSpace:"pre-line"
 }}>
 {explicacion}
 </p>
 
 </div>
+
 )}
 
-</div>
-</div>
 </div>
 
 </main>
