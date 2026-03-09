@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export default function Diagnostico() {
+export default function Diagnostico(){
 
 const [rotacion,setRotacion] = useState("")
 const [clima,setClima] = useState("")
@@ -11,115 +11,75 @@ const [capacitacion,setCapacitacion] = useState("")
 const [productividad,setProductividad] = useState("")
 
 const [diagnostico,setDiagnostico] = useState("")
-const [plan,setPlan] = useState("")
+const [plan,setPlan] = useState<string[]>([])
 
 function generarDiagnostico(){
 
 let problema = ""
-let planAccion = ""
+let acciones:string[] = []
 
 if(rotacion === "alta"){
 
 problema =
-"La empresa presenta un nivel alto de rotación de personal. Esto suele indicar problemas en retención de talento, clima laboral o falta de desarrollo profesional. Una rotación elevada genera costos adicionales en reclutamiento, capacitación y pérdida de conocimiento dentro de la organización."
+"La organización presenta un nivel elevado de rotación de personal. Esto suele indicar problemas de retención, cultura organizacional o falta de oportunidades de desarrollo. La rotación alta genera costos adicionales en reclutamiento, capacitación y pérdida de conocimiento dentro de la empresa."
 
-planAccion =
-`Plan de acción estratégico:
-
-Diagnóstico inicial
-Analizar las principales causas de rotación mediante entrevistas de salida, encuestas internas y revisión de indicadores de recursos humanos.
-
-Acción inmediata
-Revisar condiciones laborales, oportunidades de crecimiento y carga de trabajo en las áreas con mayor rotación.
-
-Desarrollo de liderazgo
-Capacitar a supervisores y líderes de equipo en gestión de talento, comunicación efectiva y liderazgo.
-
-Programa de retención
-Implementar incentivos no solo económicos, sino también desarrollo profesional, reconocimiento y planes de carrera.
-
-Seguimiento
-Medir mensualmente indicadores como rotación, satisfacción del empleado y productividad para evaluar el impacto de las mejoras.`
+acciones = [
+"Realizar entrevistas de salida para identificar las causas principales de renuncia.",
+"Revisar condiciones laborales, carga de trabajo y oportunidades de crecimiento.",
+"Implementar programas de desarrollo profesional y planes de carrera.",
+"Capacitar líderes en gestión de talento y liderazgo efectivo.",
+"Medir mensualmente indicadores de rotación y satisfacción del personal."
+]
 
 }
 
 else if(clima === "bajo"){
 
 problema =
-"El diagnóstico indica un clima organizacional bajo. Esto puede afectar directamente la motivación del personal, la colaboración entre equipos y la eficiencia operativa. Cuando el clima laboral es negativo, aumenta el riesgo de rotación, conflictos internos y disminución del rendimiento."
+"El análisis sugiere que el clima organizacional es bajo. Esto puede afectar la motivación de los empleados, la colaboración entre equipos y la eficiencia operativa. Un clima negativo suele provocar conflictos internos y disminución del rendimiento."
 
-planAccion =
-`Plan de acción estratégico:
-
-Evaluación del clima
-Aplicar encuestas internas para identificar problemas en comunicación, liderazgo o ambiente laboral.
-
-Comunicación organizacional
-Establecer canales de comunicación claros entre colaboradores y líderes para mejorar la transparencia y la confianza.
-
-Reconocimiento del talento
-Implementar programas de reconocimiento para destacar el trabajo y esfuerzo de los empleados.
-
-Fortalecimiento de equipos
-Desarrollar actividades de integración y talleres de trabajo colaborativo.
-
-Seguimiento
-Medir periódicamente el clima organizacional para verificar mejoras y detectar nuevas áreas de oportunidad.`
+acciones = [
+"Aplicar encuestas internas de clima laboral para identificar problemas específicos.",
+"Mejorar los canales de comunicación entre líderes y colaboradores.",
+"Implementar programas de reconocimiento y motivación para empleados.",
+"Fomentar actividades de integración entre equipos.",
+"Monitorear periódicamente indicadores de satisfacción laboral."
+]
 
 }
 
 else if(liderazgo === "bajo"){
 
 problema =
-"El análisis sugiere que el nivel de liderazgo dentro de la organización es limitado. Esto puede generar falta de dirección en los equipos, problemas de comunicación y dificultades para alcanzar objetivos estratégicos."
+"El diagnóstico indica debilidades en el liderazgo organizacional. Esto puede generar falta de dirección en los equipos, mala comunicación y dificultades para cumplir objetivos estratégicos."
 
-planAccion =
-`Plan de acción estratégico:
-
-Evaluación de líderes
-Identificar supervisores o líderes que necesiten desarrollo en habilidades de gestión.
-
-Capacitación en liderazgo
-Implementar programas de formación en liderazgo, toma de decisiones y manejo de equipos.
-
-Mentoría interna
-Asignar líderes experimentados como mentores para desarrollar nuevas capacidades de liderazgo.
-
-Claridad de objetivos
-Establecer metas claras para cada equipo y mejorar la comunicación de la estrategia organizacional.
-
-Evaluación continua
-Monitorear desempeño de liderazgo mediante retroalimentación de equipos y resultados operativos.`
+acciones = [
+"Evaluar habilidades de liderazgo en supervisores y gerentes.",
+"Implementar programas de capacitación en liderazgo y gestión de equipos.",
+"Crear programas de mentoría entre líderes experimentados y nuevos líderes.",
+"Definir objetivos claros para cada equipo y mejorar comunicación estratégica.",
+"Evaluar periódicamente el desempeño de liderazgo."
+]
 
 }
 
 else{
 
 problema =
-"El diagnóstico indica que la organización se encuentra en una situación relativamente estable en términos de talento humano. Sin embargo, incluso en escenarios estables es fundamental fortalecer continuamente las capacidades del equipo para mantener competitividad y crecimiento."
+"La organización presenta condiciones relativamente estables en términos de talento humano. Sin embargo, incluso en escenarios estables es importante fortalecer continuamente las capacidades del equipo para mantener competitividad y crecimiento."
 
-planAccion =
-`Plan de acción estratégico:
-
-Desarrollo profesional
-Crear programas de capacitación continua para mejorar habilidades técnicas y de liderazgo.
-
-Innovación organizacional
-Fomentar nuevas ideas y mejoras en procesos para mantener competitividad.
-
-Gestión del talento
-Identificar empleados con alto potencial y desarrollar planes de crecimiento profesional.
-
-Cultura organizacional
-Fortalecer valores organizacionales y colaboración entre equipos.
-
-Monitoreo de indicadores
-Dar seguimiento a métricas de productividad, satisfacción del empleado y desempeño organizacional.`
+acciones = [
+"Implementar programas de capacitación continua para el desarrollo profesional.",
+"Fomentar innovación en procesos internos.",
+"Identificar empleados de alto potencial y desarrollar planes de crecimiento.",
+"Fortalecer la cultura organizacional y colaboración entre equipos.",
+"Monitorear indicadores de productividad y desempeño organizacional."
+]
 
 }
 
 setDiagnostico(problema)
-setPlan(planAccion)
+setPlan(acciones)
 
 }
 
@@ -169,7 +129,7 @@ marginTop:"10px",
 color:"#cbd5f5",
 maxWidth:"700px"
 }}>
-Evalúa el estado actual del talento humano y genera un plan de acción estratégico para mejorar la estabilidad y productividad de la organización.
+Evalúa el estado del talento humano y genera recomendaciones estratégicas para mejorar desempeño organizacional.
 </p>
 
 <div style={card}>
@@ -255,7 +215,7 @@ color:"#e2e8f0"
 
 )}
 
-{plan && (
+{plan.length > 0 && (
 
 <div style={{
 marginTop:"25px",
@@ -266,14 +226,17 @@ borderRadius:"12px"
 
 <h3>Plan de acción recomendado</h3>
 
-<p style={{
+<ul style={{
 marginTop:"10px",
-whiteSpace:"pre-line",
-lineHeight:"1.7",
+lineHeight:"1.8",
 color:"#e2e8f0"
 }}>
-{plan}
-</p>
+
+{plan.map((item,i)=>(
+<li key={i}>{item}</li>
+))}
+
+</ul>
 
 </div>
 
