@@ -1,4 +1,24 @@
+"use client"
+
+import { useState } from "react"
+
 export default function Simulador() {
+
+const [continuidad,setContinuidad] = useState<number | null>(null)
+const [liquidez,setLiquidez] = useState<number | null>(null)
+const [riesgos,setRiesgos] = useState<number | null>(null)
+
+function generarSimulacion(){
+
+const nuevaContinuidad = Math.floor(Math.random()*30)+60
+const nuevaLiquidez = Math.floor(Math.random()*10)+1
+const nuevosRiesgos = Math.floor(Math.random()*5)+1
+
+setContinuidad(nuevaContinuidad)
+setLiquidez(nuevaLiquidez)
+setRiesgos(nuevosRiesgos)
+
+}
 
 const container = {
 minHeight:"100vh",
