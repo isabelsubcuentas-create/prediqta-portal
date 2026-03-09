@@ -8,6 +8,8 @@ const [continuidad,setContinuidad] = useState<number | null>(null)
 const [liquidez,setLiquidez] = useState<number | null>(null)
 const [riesgos,setRiesgos] = useState<number | null>(null)
 
+const [explicacion,setExplicacion] = useState("")
+
 const [grafica,setGrafica] = useState<number[]>([])
 
 function generarSimulacion(){
