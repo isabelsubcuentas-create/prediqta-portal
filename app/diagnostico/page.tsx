@@ -11,75 +11,166 @@ const [capacitacion,setCapacitacion] = useState("")
 const [productividad,setProductividad] = useState("")
 
 const [diagnostico,setDiagnostico] = useState("")
-const [plan,setPlan] = useState<string[]>([])
+const [plan,setPlan] = useState("")
 
 function generarDiagnostico(){
 
+let score = 100
+
+if(rotacion === "alta") score -= 20
+if(clima === "bajo") score -= 20
+if(liderazgo === "bajo") score -= 20
+if(capacitacion === "bajo") score -= 20
+if(productividad === "bajo") score -= 20
+
 let problema = ""
-let acciones:string[] = []
+let planAccion = ""
 
-if(rotacion === "alta"){
-
-problema =
-"La organización presenta un nivel elevado de rotación de personal. Esto suele indicar problemas de retención, cultura organizacional o falta de oportunidades de desarrollo. La rotación alta genera costos adicionales en reclutamiento, capacitación y pérdida de conocimiento dentro de la empresa."
-
-acciones = [
-"Realizar entrevistas de salida para identificar las causas principales de renuncia.",
-"Revisar condiciones laborales, carga de trabajo y oportunidades de crecimiento.",
-"Implementar programas de desarrollo profesional y planes de carrera.",
-"Capacitar líderes en gestión de talento y liderazgo efectivo.",
-"Medir mensualmente indicadores de rotación y satisfacción del personal."
-]
-
-}
-
-else if(clima === "bajo"){
+if(score >= 80){
 
 problema =
-"El análisis sugiere que el clima organizacional es bajo. Esto puede afectar la motivación de los empleados, la colaboración entre equipos y la eficiencia operativa. Un clima negativo suele provocar conflictos internos y disminución del rendimiento."
 
-acciones = [
-"Aplicar encuestas internas de clima laboral para identificar problemas específicos.",
-"Mejorar los canales de comunicación entre líderes y colaboradores.",
-"Implementar programas de reconocimiento y motivación para empleados.",
-"Fomentar actividades de integración entre equipos.",
-"Monitorear periódicamente indicadores de satisfacción laboral."
-]
+`Score organizacional: ${score}/100
 
-}
+Diagnóstico general
 
-else if(liderazgo === "bajo"){
+La organización presenta una situación relativamente estable en la gestión del talento humano. Los principales procesos de liderazgo, clima organizacional y productividad funcionan de forma adecuada.
 
-problema =
-"El diagnóstico indica debilidades en el liderazgo organizacional. Esto puede generar falta de dirección en los equipos, mala comunicación y dificultades para cumplir objetivos estratégicos."
+Hallazgos clave
 
-acciones = [
-"Evaluar habilidades de liderazgo en supervisores y gerentes.",
-"Implementar programas de capacitación en liderazgo y gestión de equipos.",
-"Crear programas de mentoría entre líderes experimentados y nuevos líderes.",
-"Definir objetivos claros para cada equipo y mejorar comunicación estratégica.",
-"Evaluar periódicamente el desempeño de liderazgo."
-]
+1. La estructura organizacional permite mantener estabilidad operativa.
+2. Existen bases sólidas de liderazgo y colaboración.
+3. Sin embargo, se identifican oportunidades para fortalecer desarrollo profesional y mejora continua.
+4. La empresa puede incrementar su competitividad fortaleciendo habilidades del equipo y promoviendo innovación interna.`
+
+planAccion =
+
+`Plan de acción estratégico (90 días)
+
+Semana 1–2
+Evaluación interna
+
+• Analizar desempeño actual de los equipos
+• Identificar habilidades clave del personal
+• Detectar áreas con menor productividad
+
+Resultados esperados
+Mayor claridad sobre fortalezas y oportunidades del talento humano.
+
+Indicadores a monitorear
+Productividad por área, desempeño individual.
+
+
+Semana 3–4
+Diseño de programas de desarrollo
+
+• Crear programas de capacitación técnica
+• Diseñar entrenamientos de liderazgo
+• Establecer objetivos de mejora por área
+
+Resultados esperados
+Mayor alineación entre habilidades del equipo y objetivos de la empresa.
+
+
+Mes 2
+Implementación
+
+• Ejecutar programas de capacitación
+• Fomentar innovación en procesos internos
+• Implementar espacios de colaboración entre equipos
+
+Resultados esperados
+Incremento en productividad y mejora en desempeño organizacional.
+
+
+Mes 3
+Evaluación y optimización
+
+• Medir impacto de las acciones implementadas
+• Ajustar procesos de desarrollo profesional
+• Establecer planes de crecimiento a largo plazo
+
+Indicadores clave
+
+• Productividad organizacional
+• Satisfacción del empleado
+• Retención de talento
+• Cumplimiento de objetivos por área.`
 
 }
 
 else{
 
 problema =
-"La organización presenta condiciones relativamente estables en términos de talento humano. Sin embargo, incluso en escenarios estables es importante fortalecer continuamente las capacidades del equipo para mantener competitividad y crecimiento."
 
-acciones = [
-"Implementar programas de capacitación continua para el desarrollo profesional.",
-"Fomentar innovación en procesos internos.",
-"Identificar empleados de alto potencial y desarrollar planes de crecimiento.",
-"Fortalecer la cultura organizacional y colaboración entre equipos.",
-"Monitorear indicadores de productividad y desempeño organizacional."
-]
+`Score organizacional: ${score}/100
+
+Diagnóstico general
+
+El análisis indica que existen áreas relevantes de mejora en la gestión del talento humano. Algunas variables organizacionales como liderazgo, clima laboral o desarrollo profesional pueden estar afectando el desempeño general de la empresa.
+
+Hallazgos clave
+
+1. Existen debilidades en procesos de liderazgo o gestión de equipos.
+2. Algunos colaboradores pueden presentar bajos niveles de motivación o desarrollo profesional.
+3. La empresa podría estar perdiendo eficiencia operativa por falta de capacitación o alineación estratégica.
+4. Es necesario fortalecer procesos de gestión del talento para mejorar productividad y estabilidad organizacional.`
+
+planAccion =
+
+`Plan de acción estratégico (90 días)
+
+Semana 1–2
+Diagnóstico profundo
+
+• Aplicar encuestas de clima organizacional
+• Analizar causas de rotación o bajo desempeño
+• Evaluar habilidades actuales del personal
+
+Resultados esperados
+Identificación clara de los principales problemas organizacionales.
+
+
+Semana 3–4
+Intervención organizacional
+
+• Implementar talleres de liderazgo para supervisores
+• Crear espacios de comunicación entre equipos
+• Rediseñar procesos de gestión del talento
+
+Resultados esperados
+Mejor comunicación organizacional y liderazgo más efectivo.
+
+
+Mes 2
+Desarrollo del talento
+
+• Implementar programas de capacitación profesional
+• Establecer objetivos claros para cada equipo
+• Promover cultura de colaboración y aprendizaje
+
+Resultados esperados
+Incremento en motivación, habilidades y compromiso del equipo.
+
+
+Mes 3
+Seguimiento y medición
+
+• Medir impacto de las mejoras implementadas
+• Analizar indicadores de desempeño
+• Ajustar estrategia organizacional
+
+Indicadores clave
+
+• Rotación de personal
+• Productividad por equipo
+• Nivel de satisfacción del empleado
+• Cumplimiento de objetivos organizacionales.`
 
 }
 
 setDiagnostico(problema)
-setPlan(acciones)
+setPlan(planAccion)
 
 }
 
@@ -205,6 +296,7 @@ borderRadius:"12px"
 
 <p style={{
 marginTop:"10px",
+whiteSpace:"pre-line",
 lineHeight:"1.7",
 color:"#e2e8f0"
 }}>
@@ -215,7 +307,7 @@ color:"#e2e8f0"
 
 )}
 
-{plan.length > 0 && (
+{plan && (
 
 <div style={{
 marginTop:"25px",
@@ -226,17 +318,14 @@ borderRadius:"12px"
 
 <h3>Plan de acción recomendado</h3>
 
-<ul style={{
+<p style={{
 marginTop:"10px",
-lineHeight:"1.8",
+whiteSpace:"pre-line",
+lineHeight:"1.7",
 color:"#e2e8f0"
 }}>
-
-{plan.map((item,i)=>(
-<li key={i}>{item}</li>
-))}
-
-</ul>
+{plan}
+</p>
 
 </div>
 
