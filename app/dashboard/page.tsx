@@ -8,14 +8,28 @@ export default function Dashboard() {
     fontFamily: "sans-serif"
   }
 
-  const grid = {
+  const kpiGrid = {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
-    gap: "30px",
-    marginTop: "40px"
+    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+    gap: "20px",
+    marginTop: "30px"
   }
 
   const card = {
+    padding: "25px",
+    borderRadius: "18px",
+    background: "rgba(255,255,255,0.03)",
+    border: "1px solid rgba(255,255,255,0.08)"
+  }
+
+  const toolGrid = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))",
+    gap: "30px",
+    marginTop: "50px"
+  }
+
+  const toolCard = {
     padding: "30px",
     borderRadius: "20px",
     background: "rgba(255,255,255,0.03)",
@@ -44,11 +58,36 @@ export default function Dashboard() {
       </p>
 
 
-      <div style={grid}>
+      {/* KPIs */}
 
-        {/* ASESOR IA */}
+      <div style={kpiGrid}>
 
         <div style={card}>
+          <p>Retención</p>
+          <h2>82</h2>
+          <p style={{color:"#22c55e"}}>Estable</p>
+        </div>
+
+        <div style={card}>
+          <p>Ausentismo</p>
+          <h2>+4%</h2>
+          <p style={{color:"#f59e0b"}}>Moderado</p>
+        </div>
+
+        <div style={card}>
+          <p>Riesgos activos</p>
+          <h2>3</h2>
+          <p style={{color:"#38bdf8"}}>Prioritarios</p>
+        </div>
+
+      </div>
+
+
+      {/* HERRAMIENTAS */}
+
+      <div style={toolGrid}>
+
+        <div style={toolCard}>
           <p style={{color:"#8b5cf6",fontWeight:"600"}}>HERRAMIENTA</p>
 
           <h3 style={{fontSize:"26px",marginTop:"10px"}}>
@@ -67,9 +106,7 @@ export default function Dashboard() {
         </div>
 
 
-        {/* SIMULADOR */}
-
-        <div style={card}>
+        <div style={toolCard}>
           <p style={{color:"#8b5cf6",fontWeight:"600"}}>HERRAMIENTA</p>
 
           <h3 style={{fontSize:"26px",marginTop:"10px"}}>
@@ -88,9 +125,7 @@ export default function Dashboard() {
         </div>
 
 
-        {/* RADAR */}
-
-        <div style={card}>
+        <div style={toolCard}>
           <p style={{color:"#8b5cf6",fontWeight:"600"}}>HERRAMIENTA</p>
 
           <h3 style={{fontSize:"26px",marginTop:"10px"}}>
