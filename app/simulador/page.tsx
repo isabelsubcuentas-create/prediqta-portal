@@ -9,6 +9,7 @@ const [liquidez,setLiquidez] = useState<number | null>(null)
 const [riesgos,setRiesgos] = useState<number | null>(null)
 const [grafica,setGrafica] = useState<number[]>([30,50,40,60,45])
 const [explicacion,setExplicacion] = useState("")
+const [recomendacion,setRecomendacion] = useState("")
 
 function generarSimulacion(){
 
@@ -29,33 +30,62 @@ setLiquidez(nuevaLiquidez)
 setRiesgos(nuevosRiesgos)
 setGrafica(nuevaGrafica)
 
+/* EXPLICACIÓN */
+
 let texto = ""
 
-texto += "La simulación analiza el posible impacto de la estrategia seleccionada en tres factores clave de la organización: continuidad operativa, liquidez y riesgos organizacionales.\n\n"
+texto += "La simulación analiza el posible impacto de la estrategia seleccionada en tres factores clave de la organización: continuidad operativa, liquidez financiera y riesgos organizacionales.\n\n"
 
 if(nuevaContinuidad >= 80){
 texto += "Continuidad operativa: El resultado indica una situación estable. La empresa tendría buenas probabilidades de mantener sus operaciones funcionando sin interrupciones importantes.\n\n"
 }else{
-texto += "Continuidad operativa: El resultado muestra una estabilidad moderada. Se recomienda monitorear factores internos como clima laboral o carga de trabajo.\n\n"
+texto += "Continuidad operativa: El resultado muestra una estabilidad moderada. Sería recomendable monitorear factores como clima organizacional o carga de trabajo.\n\n"
 }
 
 if(nuevaLiquidez >= 6){
-texto += "Liquidez: El impacto financiero proyectado es positivo. La estrategia podría mejorar la eficiencia económica o reducir costos.\n\n"
+texto += "Liquidez: El impacto financiero proyectado es positivo. La estrategia podría mejorar la eficiencia económica o reducir costos operativos.\n\n"
 }else{
 texto += "Liquidez: El impacto financiero sería moderado y los beneficios podrían verse en el mediano plazo.\n\n"
 }
 
 if(nuevosRiesgos >= 3){
-texto += "Riesgos: Se detectan algunos riesgos organizacionales que deberían gestionarse adecuadamente para evitar problemas futuros.\n\n"
+texto += "Riesgos: Se detectan algunos riesgos organizacionales que deberían gestionarse para evitar problemas futuros.\n\n"
 }else{
-texto += "Riesgos: El nivel de riesgo proyectado es bajo, lo que indica que la estrategia parece relativamente segura para la organización.\n\n"
+texto += "Riesgos: El nivel de riesgo proyectado es bajo, lo que indica que la estrategia parece relativamente segura.\n\n"
 }
 
 texto += "Interpretación general: Esta simulación permite anticipar posibles efectos de una decisión estratégica antes de implementarla en la empresa."
 
 setExplicacion(texto)
 
+/* RECOMENDACIÓN */
+
+let recomendacionTexto = ""
+
+if(nuevaContinuidad >= 80 && nuevosRiesgos <= 2){
+
+recomendacionTexto =
+"La simulación indica condiciones favorables para implementar la estrategia. Se recomienda iniciar con una implementación gradual y monitorear indicadores clave de desempeño."
+
 }
+else if(nuevaContinuidad >= 70){
+
+recomendacionTexto =
+"La estrategia parece viable, pero se recomienda aplicarla primero mediante un programa piloto antes de escalarla a toda la organización."
+
+}
+else{
+
+recomendacionTexto =
+"La simulación sugiere posibles riesgos operativos. Antes de implementar esta estrategia se recomienda fortalecer procesos internos o liderazgo organizacional."
+
+}
+
+setRecomendacion(recomendacionTexto)
+
+}
+
+/* ESTILOS */
 
 const container = {
 minHeight:"100vh",
@@ -201,6 +231,32 @@ lineHeight:"1.7",
 whiteSpace:"pre-line"
 }}>
 {explicacion}
+</p>
+
+</div>
+
+)}
+
+{recomendacion && (
+
+<div style={{
+marginTop:"25px",
+padding:"20px",
+borderRadius:"16px",
+background:"rgba(124,58,237,0.15)",
+border:"1px solid rgba(124,58,237,0.3)"
+}}>
+
+<h3 style={{color:"#c4b5fd"}}>
+Recomendación estratégica
+</h3>
+
+<p style={{
+marginTop:"10px",
+lineHeight:"1.6",
+color:"#e2e8f0"
+}}>
+{recomendacion}
 </p>
 
 </div>
