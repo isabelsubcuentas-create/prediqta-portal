@@ -225,7 +225,16 @@ Evalúa el estado del talento humano y genera recomendaciones estratégicas para
 
 <div style={card}>
 
+<div style={{
+display:"grid",
+gridTemplateColumns:"1fr 1fr",
+gap:"30px"
+}}>
+
+<div>
+
 <p>Nivel de rotación de personal</p>
+
 <select style={selectStyle} onChange={(e)=>setRotacion(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="baja">Baja</option>
@@ -233,7 +242,13 @@ Evalúa el estado del talento humano y genera recomendaciones estratégicas para
 <option value="alta">Alta</option>
 </select>
 
-<p style={{marginTop:"22px"}}>Clima organizacional</p>
+</div>
+
+
+<div>
+
+<p>Clima organizacional</p>
+
 <select style={selectStyle} onChange={(e)=>setClima(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="alto">Alto</option>
@@ -241,7 +256,13 @@ Evalúa el estado del talento humano y genera recomendaciones estratégicas para
 <option value="bajo">Bajo</option>
 </select>
 
-<p style={{marginTop:"22px"}}>Nivel de liderazgo</p>
+</div>
+
+
+<div>
+
+<p>Nivel de liderazgo</p>
+
 <select style={selectStyle} onChange={(e)=>setLiderazgo(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="alto">Alto</option>
@@ -249,7 +270,13 @@ Evalúa el estado del talento humano y genera recomendaciones estratégicas para
 <option value="bajo">Bajo</option>
 </select>
 
-<p style={{marginTop:"22px"}}>Nivel de capacitación</p>
+</div>
+
+
+<div>
+
+<p>Nivel de capacitación</p>
+
 <select style={selectStyle} onChange={(e)=>setCapacitacion(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="alto">Alto</option>
@@ -257,7 +284,13 @@ Evalúa el estado del talento humano y genera recomendaciones estratégicas para
 <option value="bajo">Bajo</option>
 </select>
 
-<p style={{marginTop:"22px"}}>Nivel de productividad</p>
+</div>
+
+
+<div>
+
+<p>Nivel de productividad</p>
+
 <select style={selectStyle} onChange={(e)=>setProductividad(e.target.value)}>
 <option value="">Seleccionar</option>
 <option value="alto">Alto</option>
@@ -265,12 +298,15 @@ Evalúa el estado del talento humano y genera recomendaciones estratégicas para
 <option value="bajo">Bajo</option>
 </select>
 
-<br/>
+</div>
+
+</div>
+
 
 <button
 onClick={generarDiagnostico}
 style={{
-marginTop:"30px",
+marginTop:"40px",
 padding:"14px 28px",
 borderRadius:"10px",
 background:"linear-gradient(90deg,#7c3aed,#3b82f6)",
@@ -282,6 +318,8 @@ fontWeight:"600"
 >
 Generar diagnóstico
 </button>
+
+</div>
 
 {diagnostico && (
 
