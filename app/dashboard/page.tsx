@@ -107,16 +107,18 @@ export default function DashboardPage() {
             </a>
           </section>
 
-          <section style={toolCard}>
-            <p style={sectionLabel}>HERRAMIENTA</p>
-            <h3 style={toolTitle}>Simulador de escenarios</h3>
-            <p style={toolText}>
-              Próximo paso: simular impacto de acciones de retención en costos y permanencia.
-            </p>
-            <button type="button" style={buttonDisabled}>
-              Próximamente
-            </button>
-          </section>
+<section style={toolCard}>
+  <p style={sectionLabel}>HERRAMIENTA</p>
+
+  <h3 style={toolTitle}>Simulador de escenarios</h3>
+
+  <a href="/simulador">
+    <button type="button" style={button}>
+      Abrir simulador
+    </button>
+  </a>
+
+</section>
 
           <section style={toolCard}>
             <p style={sectionLabel}>HERRAMIENTA</p>
