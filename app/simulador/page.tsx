@@ -29,6 +29,32 @@ setLiquidez(nuevaLiquidez)
 setRiesgos(nuevosRiesgos)
 setGrafica(nuevaGrafica)
 
+let texto = "Resultados de la simulación:\n\n"
+
+texto += "La simulación analiza cómo podría impactar la estrategia seleccionada en tres aspectos importantes de la empresa: la continuidad operativa, la liquidez y el nivel de riesgos relacionados con el talento humano.\n\n"
+
+if(nuevaContinuidad >= 80){
+texto += "Continuidad operativa: La empresa podría mantener sus operaciones funcionando de forma estable si se implementa esta estrategia.\n\n"
+}else{
+texto += "Continuidad operativa: Podrían existir algunos desafíos para mantener la estabilidad operativa, por lo que sería importante monitorear el clima laboral y la organización del trabajo.\n\n"
+}
+
+if(nuevaLiquidez >= 6){
+texto += "Liquidez: La estrategia podría generar beneficios económicos o mejorar la eficiencia financiera de la empresa.\n\n"
+}else{
+texto += "Liquidez: El impacto financiero sería moderado, por lo que los beneficios económicos podrían tomar tiempo en reflejarse.\n\n"
+}
+
+if(nuevosRiesgos >= 3){
+texto += "Riesgos: Se detectan algunos riesgos organizacionales que deben gestionarse para evitar problemas en el futuro.\n\n"
+}else{
+texto += "Riesgos: El nivel de riesgo proyectado es bajo, por lo que la estrategia parece relativamente segura.\n\n"
+}
+
+texto += "Interpretación general: Esta simulación ayuda a anticipar cómo una decisión estratégica podría afectar a la empresa antes de implementarla en la realidad."
+
+setExplicacion(texto)
+
 }
 
 const container = {
