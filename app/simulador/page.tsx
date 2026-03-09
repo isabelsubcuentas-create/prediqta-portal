@@ -198,11 +198,41 @@ transition:"0.4s"
 }}
 ></div>
 ))}
-
 </div>
 
-</div>
+{explicacion && (
+<div style={{
+marginTop:"40px",
+padding:"24px",
+borderRadius:"16px",
+background:"rgba(255,255,255,0.03)",
+border:"1px solid rgba(255,255,255,0.08)"
+}}>
 
+<h3 style={{
+fontSize:"20px",
+marginBottom:"12px",
+background:"linear-gradient(90deg,#a78bfa,#60a5fa)",
+WebkitBackgroundClip:"text",
+color:"transparent"
+}}>
+Interpretación de la simulación
+</h3>
+
+<p style={{
+color:"#cbd5f5",
+lineHeight:"1.7",
+fontSize:"15px",
+whiteSpace:"pre-line"
+}}>
+{explicacion}
+</p>
+
+</div>
+)}
+
+</div>
+</div>
 </div>
 
 </main>
