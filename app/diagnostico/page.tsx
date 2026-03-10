@@ -1,6 +1,25 @@
 "use client"
 
 import { useState } from "react"
+import { Radar } from "react-chartjs-2"
+import {
+Chart as ChartJS,
+RadialLinearScale,
+PointElement,
+LineElement,
+Filler,
+Tooltip,
+Legend
+} from "chart.js"
+
+ChartJS.register(
+RadialLinearScale,
+PointElement,
+LineElement,
+Filler,
+Tooltip,
+Legend
+)
 
 export default function Diagnostico() {
 
@@ -13,6 +32,44 @@ const [productividad,setProductividad] = useState("")
 const [diagnostico,setDiagnostico] = useState("")
 const [plan,setPlan] = useState("")
 const [score,setScore] = useState(0)
+
+function valorGrafica(valor:string){
+
+if(valor === "alto") return 80
+if(valor === "medio") return 60
+if(valor === "bajo") return 40
+if(valor === "alta") return 40
+if(valor === "media") return 60
+if(valor === "baja") return 80
+
+return 50
+}
+
+const radarData = {
+labels: [
+"Rotación",
+"Clima",
+"Liderazgo",
+"Capacitación",
+"Productividad"
+],
+datasets: [
+{
+label:"Salud organizacional",
+data:[
+valorGrafica(rotacion),
+valorGrafica(clima),
+valorGrafica(liderazgo),
+valorGrafica(capacitacion),
+valorGrafica(productividad)
+],
+backgroundColor:"rgba(124,58,237,0.3)",
+borderColor:"#7c3aed",
+borderWidth:2,
+pointBackgroundColor:"#60a5fa"
+}
+]
+}
 
 function generarDiagnostico(){
 
@@ -78,14 +135,7 @@ Evaluación
 
 • Medir impacto de las mejoras
 • Ajustar procesos internos
-• Definir plan de mejora continua
-
-Indicadores clave
-
-• Productividad por área
-• Satisfacción del empleado
-• Retención de talento
-• Cumplimiento de objetivos`
+• Definir plan de mejora continua`
 
 setDiagnostico(problema)
 setPlan(planAccion)
@@ -96,7 +146,6 @@ function estadoOrganizacion(){
 
 if(score >= 80) return {texto:"🟢 Organización saludable",color:"#22c55e"}
 if(score >= 50) return {texto:"🟡 Riesgo organizacional moderado",color:"#f59e0b"}
-
 return {texto:"🔴 Riesgo organizacional alto",color:"#ef4444"}
 
 }
@@ -244,23 +293,13 @@ gap:"24px"
 </div>
 
 {score === 0 ? (
-
-<button
-onClick={generarDiagnostico}
-style={buttonPrimary}
->
+<button onClick={generarDiagnostico} style={buttonPrimary}>
 Generar diagnóstico
 </button>
-
 ) : (
-
-<button
-onClick={resetDiagnostico}
-style={buttonSecondary}
->
+<button onClick={resetDiagnostico} style={buttonSecondary}>
 Generar nuevo diagnóstico
 </button>
-
 )}
 
 {score > 0 && (
@@ -300,14 +339,29 @@ borderRadius:"10px",
 marginTop:"12px",
 overflow:"hidden"
 }}>
-
 <div style={{
 height:"100%",
 width:`${score}%`,
 background:"linear-gradient(90deg,#7c3aed,#3b82f6)"
 }}></div>
+</div>
 
 </div>
+
+)}
+
+{score > 0 && (
+
+<div style={{
+marginTop:"40px",
+padding:"30px",
+background:"rgba(255,255,255,0.04)",
+borderRadius:"12px"
+}}>
+
+<h3>Radar organizacional</h3>
+
+<Radar data={radarData} />
 
 </div>
 
