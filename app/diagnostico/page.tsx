@@ -12,18 +12,21 @@ const [productividad,setProductividad] = useState("")
 
 const [diagnostico,setDiagnostico] = useState("")
 const [plan,setPlan] = useState("")
+const [score,setScore] = useState(0)
 
 function generarDiagnostico(){
 
-let score = 100
+let scoreCalc = 100
 
-if(rotacion === "alta") score -= 20
-if(clima === "bajo") score -= 20
-if(liderazgo === "bajo") score -= 20
-if(capacitacion === "bajo") score -= 20
-if(productividad === "bajo") score -= 20
+if(rotacion === "alta") scoreCalc -= 20
+if(clima === "bajo") scoreCalc -= 20
+if(liderazgo === "bajo") scoreCalc -= 20
+if(capacitacion === "bajo") scoreCalc -= 20
+if(productividad === "bajo") scoreCalc -= 20
 
-let problema = `Score organizacional: ${score}/100
+setScore(scoreCalc)
+
+let problema = `Score organizacional: ${scoreCalc}/100
 
 Diagnóstico general
 
@@ -86,6 +89,14 @@ Indicadores clave
 
 setDiagnostico(problema)
 setPlan(planAccion)
+
+}
+
+function estadoOrganizacion(){
+
+if(score >= 80) return "Organización saludable"
+if(score >= 50) return "Riesgo organizacional moderado"
+return "Riesgo organizacional alto"
 
 }
 
@@ -213,6 +224,52 @@ fontWeight:"600"
 >
 Generar diagnóstico
 </button>
+
+{score > 0 && (
+
+<div style={{
+marginTop:"35px",
+padding:"25px",
+background:"rgba(255,255,255,0.05)",
+borderRadius:"12px"
+}}>
+
+<h3>Organizational Health Score</h3>
+
+<h2 style={{
+fontSize:"42px",
+marginTop:"8px",
+background:"linear-gradient(90deg,#7c3aed,#3b82f6)",
+WebkitBackgroundClip:"text",
+color:"transparent"
+}}>
+{score}/100
+</h2>
+
+<p style={{marginTop:"6px",color:"#cbd5f5"}}>
+{estadoOrganizacion()}
+</p>
+
+<div style={{
+height:"10px",
+width:"100%",
+background:"#1e293b",
+borderRadius:"10px",
+marginTop:"12px",
+overflow:"hidden"
+}}>
+
+<div style={{
+height:"100%",
+width:`${score}%`,
+background:"linear-gradient(90deg,#7c3aed,#3b82f6)"
+}}></div>
+
+</div>
+
+</div>
+
+)}
 
 {diagnostico && (
 
