@@ -1,42 +1,42 @@
-import OpenAI from "openai";
-import { NextResponse } from "next/server";
-
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+import OpenAI from "openai"
 
 export async function POST(req: Request) {
-  try {
-    const body = await req.json();
-    const messages = body.messages || [];
 
-    const lastMessage =
-      messages.length > 0 ? messages[messages.length - 1].content : "";
+try {
 
-    const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content:
-            "Eres Prediqta, un asesor estratégico especializado en retención de talento en el sector automotriz. Responde de forma clara, profesional y práctica.",
-        },
-        {
-          role: "user",
-          content: lastMessage,
-        },
-      ],
-    });
+const body = await req.json()
+const messages = body.messages
 
-    return NextResponse.json({
-      reply: completion.choices[0].message.content,
-    });
-  } catch (error) {
-    console.error("Error en asesor:", error);
+const client = new OpenAI({
+apiKey: process.env.OPENAI_API_KEY
+})
 
-    return NextResponse.json(
-      { error: "Error generando respuesta de IA" },
-      { status: 500 }
-    );
-  }
+const completion = await client.chat.completions.create({
+model: "gpt-4o-mini",
+messages: [
+{
+role: "system",
+content: "Eres un asesor estratégico especializado en gestión de talento humano en empresas industriales."
+},
+...messages
+]
+})
+
+const reply = completion.choices[0].message.content
+
+return Response.json({
+reply
+})
+
+} catch (error) {
+
+console.error(error)
+
+return Response.json(
+{ error: "Error con OpenAI" },
+{ status: 500 }
+)
+
+}
+
 }
