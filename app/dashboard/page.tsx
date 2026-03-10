@@ -21,10 +21,35 @@ alignItems: "center"
 const userCard = {
 background: "rgba(15,23,42,0.6)",
 backdropFilter: "blur(10px)",
-padding: "12px 20px",
-borderRadius: "12px",
+padding: "18px 22px",
+borderRadius: "14px",
 border: "1px solid rgba(255,255,255,0.08)",
-fontSize: "14px"
+fontSize: "14px",
+minWidth: "240px"
+}
+
+const userHeader = {
+display: "flex",
+alignItems: "center",
+gap: "12px",
+marginBottom: "8px"
+}
+
+const avatar = {
+width: "36px",
+height: "36px",
+borderRadius: "50%",
+background: "linear-gradient(90deg,#7c3aed,#3b82f6)",
+display: "flex",
+alignItems: "center",
+justifyContent: "center",
+fontWeight: "600"
+}
+
+const userMeta = {
+fontSize: "12px",
+color: "#94a3b8",
+lineHeight: "1.4"
 }
 
 const kpiGrid = {
@@ -109,9 +134,26 @@ Panel estratégico
 </h1>
 
 <div style={userCard}>
-test9.9@gmail.com
-<br/>
-<span style={{color:"#94a3b8"}}>Prototipo Demo</span>
+
+<div style={userHeader}>
+
+<div style={avatar}>
+U
+</div>
+
+<div>
+<strong>test9.9@gmail.com</strong>
+</div>
+
+</div>
+
+<div style={userMeta}>
+Plan: Prototipo Demo <br/>
+Empresa: Prediqta Labs <br/>
+Rol: HR Manager <br/>
+Último acceso: Hoy
+</div>
+
 </div>
 
 </div>
