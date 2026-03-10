@@ -27,25 +27,6 @@ border: "1px solid rgba(255,255,255,0.08)",
 fontSize: "14px"
 }
 
-const description = {
-color: "#cbd5f5",
-marginTop: "15px",
-maxWidth: "700px"
-}
-
-const badges = {
-display: "flex",
-gap: "10px",
-marginTop: "15px"
-}
-
-const badge = {
-background: "rgba(124,58,237,0.2)",
-padding: "6px 12px",
-borderRadius: "20px",
-fontSize: "12px"
-}
-
 const kpiGrid = {
 display: "grid",
 gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
@@ -108,18 +89,12 @@ cursor: "pointer",
 boxShadow: "0 8px 30px rgba(124,58,237,0.6)"
 }
 
-const buttonDisabled = {
-...button,
-background: "#334155",
-boxShadow: "none",
-cursor: "default"
-}
-
 return (
 
 <main style={container}>
 
 <div style={header}>
+
 <h1 style={{
 fontSize:"52px",
 fontWeight:"800",
@@ -138,6 +113,7 @@ test9.9@gmail.com
 <br/>
 <span style={{color:"#94a3b8"}}>Prototipo Demo</span>
 </div>
+
 </div>
 
 <p style={{
@@ -151,45 +127,6 @@ Prediqta detecta señales tempranas en talento humano, clima organizacional
 y riesgos operativos para anticipar decisiones críticas antes de que
 impacten la continuidad de la empresa.
 </p>
-
-<div style={{
-display:"flex",
-gap:"12px",
-marginTop:"22px"
-}}>
-
-<span style={{
-background:"linear-gradient(90deg,#7c3aed,#6366f1)",
-padding:"8px 16px",
-borderRadius:"999px",
-fontSize:"13px",
-fontWeight:"500",
-boxShadow:"0 4px 20px rgba(124,58,237,0.5)"
-}}>
-Talent Analytics
-</span>
-
-<span style={{
-background:"rgba(56,189,248,0.2)",
-padding:"8px 16px",
-borderRadius:"999px",
-fontSize:"13px",
-border:"1px solid rgba(56,189,248,0.3)"
-}}>
-Predicción IA
-</span>
-
-<span style={{
-background:"rgba(34,197,94,0.2)",
-padding:"8px 16px",
-borderRadius:"999px",
-fontSize:"13px",
-border:"1px solid rgba(34,197,94,0.3)"
-}}>
-Sector Automotriz
-</span>
-
-</div>
 
 {/* KPIs */}
 
@@ -210,13 +147,6 @@ color:"transparent"
 
 <p style={{color:"#22c55e"}}>Estable</p>
 
-<div style={{marginTop:"12px",display:"flex",gap:"4px"}}>
-<div style={{height:"6px",width:"20px",background:"#7c3aed",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"14px",background:"#6366f1",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"26px",background:"#38bdf8",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"18px",background:"#7c3aed",borderRadius:"3px"}}></div>
-</div>
-
 </div>
 
 <div style={kpiCard}>
@@ -233,13 +163,6 @@ color:"transparent"
 </h2>
 
 <p style={{color:"#f59e0b"}}>Moderado</p>
-
-<div style={{marginTop:"12px",display:"flex",gap:"4px"}}>
-<div style={{height:"6px",width:"18px",background:"#7c3aed",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"24px",background:"#6366f1",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"14px",background:"#38bdf8",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"20px",background:"#7c3aed",borderRadius:"3px"}}></div>
-</div>
 
 </div>
 
@@ -258,13 +181,6 @@ color:"transparent"
 
 <p style={{color:"#38bdf8"}}>Prioritarios</p>
 
-<div style={{marginTop:"12px",display:"flex",gap:"4px"}}>
-<div style={{height:"6px",width:"12px",background:"#7c3aed",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"22px",background:"#6366f1",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"18px",background:"#38bdf8",borderRadius:"3px"}}></div>
-<div style={{height:"6px",width:"26px",background:"#7c3aed",borderRadius:"3px"}}></div>
-</div>
-
 </div>
 
 </div>
@@ -274,6 +190,7 @@ color:"transparent"
 <div style={toolGrid}>
 
 <section style={toolCard}>
+
 <p style={sectionLabel}>HERRAMIENTA</p>
 
 <h3 style={toolTitle}>Asesor estratégico IA</h3>
@@ -292,6 +209,7 @@ Abrir asesor
 </section>
 
 <section style={toolCard}>
+
 <p style={sectionLabel}>HERRAMIENTA</p>
 
 <h3 style={toolTitle}>Simulador de escenarios</h3>
@@ -310,18 +228,22 @@ Abrir simulador
 </section>
 
 <section style={toolCard}>
+
 <p style={sectionLabel}>HERRAMIENTA</p>
 
-<h3 style={toolTitle}>Radar de riesgos</h3>
+<h3 style={toolTitle}>Diagnóstico organizacional</h3>
 
 <p style={toolText}>
-Próximamente: visualización inteligente de riesgos laborales
-por área, supervisión y turno.
+Evalúa el estado del talento humano en tu empresa y genera
+recomendaciones estratégicas para mejorar liderazgo,
+productividad y clima organizacional.
 </p>
 
-<button style={buttonDisabled}>
-Próximamente
+<a href="/diagnostico">
+<button style={button}>
+Abrir diagnóstico
 </button>
+</a>
 
 </section>
 
