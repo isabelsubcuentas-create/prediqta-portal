@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export default function Asesor(){
+export default function Asesor() {
 
 const [messages,setMessages] = useState([
 {
@@ -49,51 +49,71 @@ content:data.reply
 
 return(
 
-<div style={{
-padding:"40px",
-background:"#020617",
-minHeight:"100vh",
-color:"white"
-}}>
+<div className="min-h-screen bg-[#020617] text-white p-10">
 
-<h1>Asesor estratégico IA</h1>
+<div className="max-w-5xl mx-auto">
 
-<div style={{
-marginTop:"30px",
-background:"#111827",
-padding:"20px",
-borderRadius:"10px"
-}}>
+<h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-3">
+Asesor estratégico IA
+</h1>
+
+<p className="text-gray-400 mb-8">
+Chat inteligente para retención de talento en automotriz
+</p>
+
+
+<div className="bg-[#111827] border border-gray-800 rounded-2xl p-6 mb-6">
 
 {messages.map((m,i)=>(
-<p key={i}>
-<strong>{m.role==="assistant"?"IA":"Tú"}:</strong> {m.content}
+
+<p key={i} className="mb-4 leading-relaxed">
+
+<strong className={m.role==="assistant" ? "text-purple-400" : "text-blue-400"}>
+
+{m.role==="assistant" ? "IA:" : "Tú:"}
+
+</strong>
+
+<span className="ml-2 text-gray-200">
+{m.content}
+</span>
+
 </p>
+
 ))}
 
 </div>
 
+
+<div className="flex gap-3">
+
 <input
+
 value={input}
+
 onChange={(e)=>setInput(e.target.value)}
+
 placeholder="Escribe tu pregunta..."
-style={{
-marginTop:"20px",
-width:"100%",
-padding:"12px",
-borderRadius:"8px"
-}}
+
+className="flex-1 bg-[#0f172a] border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-400 outline-none focus:border-purple-500"
+
 />
 
 <button
+
 onClick={sendMessage}
-style={{
-marginTop:"10px",
-padding:"12px 20px"
-}}
+
+className="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-blue-500 hover:opacity-90"
+
 >
+
 Enviar
+
 </button>
+
+</div>
+
+</div>
 
 </div>
 
