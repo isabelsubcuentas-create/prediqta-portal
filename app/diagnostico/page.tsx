@@ -94,18 +94,27 @@ setPlan(planAccion)
 
 function estadoOrganizacion(){
 
-if(score >= 80) return "Organización saludable"
-if(score >= 50) return "Riesgo organizacional moderado"
-return "Riesgo organizacional alto"
+if(score >= 80) return {texto:"🟢 Organización saludable",color:"#22c55e"}
+if(score >= 50) return {texto:"🟡 Riesgo organizacional moderado",color:"#f59e0b"}
+
+return {texto:"🔴 Riesgo organizacional alto",color:"#ef4444"}
 
 }
+
+function resetDiagnostico(){
+setDiagnostico("")
+setPlan("")
+setScore(0)
+}
+
+const estado = estadoOrganizacion()
 
 const container = {
 minHeight:"100vh",
 background:"linear-gradient(120deg,#0f172a,#020617)",
 padding:"60px",
 color:"white",
-fontFamily:"system-ui"
+fontFamily:"Inter, sans-serif"
 }
 
 const card = {
@@ -127,6 +136,22 @@ border:"1px solid rgba(255,255,255,0.1)",
 width:"100%"
 }
 
+const buttonPrimary = {
+marginTop:"30px",
+padding:"14px 28px",
+borderRadius:"10px",
+background:"linear-gradient(90deg,#7c3aed,#3b82f6)",
+color:"white",
+border:"none",
+cursor:"pointer",
+fontWeight:"600"
+}
+
+const buttonSecondary = {
+...buttonPrimary,
+background:"#334155"
+}
+
 return (
 
 <main style={container}>
@@ -140,6 +165,15 @@ color:"transparent"
 }}>
 Diagnóstico Organizacional
 </h1>
+
+<p style={{
+marginTop:"6px",
+fontSize:"14px",
+letterSpacing:"1px",
+color:"#94a3b8"
+}}>
+Strategic Talent Intelligence Platform
+</p>
 
 <p style={{
 marginTop:"10px",
@@ -209,21 +243,25 @@ gap:"24px"
 
 </div>
 
+{score === 0 ? (
+
 <button
 onClick={generarDiagnostico}
-style={{
-marginTop:"30px",
-padding:"14px 28px",
-borderRadius:"10px",
-background:"linear-gradient(90deg,#7c3aed,#3b82f6)",
-color:"white",
-border:"none",
-cursor:"pointer",
-fontWeight:"600"
-}}
+style={buttonPrimary}
 >
 Generar diagnóstico
 </button>
+
+) : (
+
+<button
+onClick={resetDiagnostico}
+style={buttonSecondary}
+>
+Generar nuevo diagnóstico
+</button>
+
+)}
 
 {score > 0 && (
 
@@ -246,8 +284,12 @@ color:"transparent"
 {score}/100
 </h2>
 
-<p style={{marginTop:"6px",color:"#cbd5f5"}}>
-{estadoOrganizacion()}
+<p style={{
+marginTop:"6px",
+color:estado.color,
+fontWeight:"600"
+}}>
+{estado.texto}
 </p>
 
 <div style={{
