@@ -5,74 +5,59 @@ import { useState } from "react"
 export default function Asesor(){
 
 const [input,setInput] = useState("")
+const [loading,setLoading] = useState(false)
+
 const [messages,setMessages] = useState([
 {
 role:"assistant",
-content:"Hola. Soy el Asesor Estratégico IA de Prediqta. Puedo ayudarte con retención de talento en automotriz o responder preguntas generales. ¿Qué quieres analizar?"
+content:"Hola. Soy el Asesor Estratégico IA de Prediqta. Puedo ayudarte con retención de talento en automotriz o responder preguntas estratégicas sobre talento humano."
 }
 ])
 
-function generarRespuesta(pregunta:string){
-
-let respuesta=""
-
-if(pregunta.toLowerCase().includes("rotación")){
-respuesta = `Para reducir la rotación en planta se recomienda:
-
-1. Analizar causas principales de salida
-2. Mejorar procesos de onboarding
-3. Crear planes de crecimiento interno
-4. Revisar competitividad salarial
-5. Fortalecer liderazgo de supervisores`
-}
-
-else if(pregunta.toLowerCase().includes("ausentismo")){
-respuesta = `Para reducir el ausentismo laboral:
-
-1. Analizar patrones por turno
-2. Implementar incentivos de asistencia
-3. Revisar carga laboral
-4. Mejorar clima organizacional
-5. Crear seguimiento con supervisores`
-}
-
-else if(pregunta.toLowerCase().includes("clima")){
-respuesta = `Para mejorar el clima laboral:
-
-1. Capacitar supervisores en liderazgo
-2. Implementar feedback continuo
-3. Crear programas de reconocimiento
-4. Mejorar comunicación entre turnos
-5. Medir clima organizacional periódicamente`
-}
-
-else{
-respuesta = `Recomiendo analizar tres factores clave:
-
-1. Rotación de personal
-2. Ausentismo laboral
-3. Clima organizacional
-
-Estas variables suelen ser los principales indicadores de riesgo en talento humano dentro de plantas industriales.`
-}
-
-return respuesta
-}
-
-function enviarPregunta(texto?:string){
+async function enviarPregunta(texto?:string){
 
 const pregunta = texto || input
 if(!pregunta) return
 
-const respuesta = generarRespuesta(pregunta)
+const newMessages = [
+...messages,
+{ role:"user", content:pregunta }
+]
 
-setMessages(prev=>[
-...prev,
-{role:"user",content:pregunta},
-{role:"assistant",content:respuesta}
+setMessages(newMessages)
+setInput("")
+setLoading(true)
+
+try{
+
+const res = await fetch("/api/chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+messages:newMessages
+})
+})
+
+const data = await res.json()
+
+setMessages([
+...newMessages,
+{ role:"assistant", content:data.reply }
 ])
 
-setInput("")
+}catch(err){
+
+setMessages([
+...newMessages,
+{ role:"assistant", content:"Hubo un error al consultar la IA." }
+])
+
+}
+
+setLoading(false)
+
 }
 
 const container = {
@@ -124,7 +109,7 @@ background:"rgba(255,255,255,0.05)",
 border:"1px solid rgba(255,255,255,0.08)",
 lineHeight:"1.6",
 maxWidth:"800px",
-minHeight:"180px"
+minHeight:"200px"
 }
 
 const inputStyle={
@@ -148,7 +133,7 @@ cursor:"pointer",
 fontWeight:"600"
 }
 
-return (
+return(
 
 <main style={container}>
 
@@ -216,15 +201,15 @@ gap:"12px",
 flexWrap:"wrap"
 }}>
 
-<button style={questionButton} onClick={()=>enviarPregunta("rotación")}>
+<button style={questionButton} onClick={()=>enviarPregunta("¿Cómo reduzco la rotación en planta?")}>
 ¿Cómo reduzco la rotación en planta?
 </button>
 
-<button style={questionButton} onClick={()=>enviarPregunta("ausentismo")}>
+<button style={questionButton} onClick={()=>enviarPregunta("¿Qué hago con el ausentismo?")}>
 ¿Qué hago con el ausentismo?
 </button>
 
-<button style={questionButton} onClick={()=>enviarPregunta("clima laboral")}>
+<button style={questionButton} onClick={()=>enviarPregunta("¿Cómo mejorar el clima laboral por turno?")}>
 ¿Cómo mejorar el clima laboral por turno?
 </button>
 
@@ -241,6 +226,8 @@ color:m.role==="assistant"?"#e2e8f0":"#93c5fd"
 {m.content}
 </p>
 ))}
+
+{loading && <p style={{color:"#94a3b8"}}>IA está pensando...</p>}
 
 </div>
 
