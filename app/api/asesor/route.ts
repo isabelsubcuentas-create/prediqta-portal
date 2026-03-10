@@ -16,7 +16,7 @@ model: "gpt-4o-mini",
 messages: [
 {
 role: "system",
-content: "Eres un asesor estratégico especializado en gestión de talento humano en empresas industriales."
+content: "Eres un asesor estratégico especializado en gestión de talento humano en empresas industriales. Da recomendaciones claras y accionables."
 },
 ...messages
 ]
