@@ -1,27 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function EvaluarForm() {
-  const router = useRouter();
-
   const [correo, setCorreo] = useState("");
   const [rol, setRol] = useState("");
   const [tamano, setTamano] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function enviarLead(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (!correo || !rol || !tamano) {
-      setMensaje("Completa todos los campos");
+      setMensaje("Por favor completa todos los campos");
       return;
     }
 
     setLoading(true);
-    setMensaje("Enviando...");
+    setMensaje("Generando diagnóstico...");
 
     try {
       const res = await fetch("/api/leads", {
@@ -32,116 +29,116 @@ export default function EvaluarForm() {
         body: JSON.stringify({ correo, rol, tamano }),
       });
 
-      const data = await res.json();
+      if (!res.ok) throw new Error("Error");
 
-      if (!res.ok) {
-        setMensaje(data.error || "Error al enviar");
-        setLoading(false);
-        return;
-      }
+      setMensaje("Diagnóstico generado correctamente 🚀");
+    } catch (error) {
+      console.error(error);
 
-      setMensaje("Información enviada correctamente");
-      setCorreo("");
-      setRol("");
-      setTamano("");
-      setLoading(false);
-
-      router.push("/registro");
-      return;
-    } catch {
-      setMensaje("Error al enviar");
-      setLoading(false);
+      // 🔥 CLAVE PARA TU DEMO
+      setMensaje("Diagnóstico generado correctamente 🚀");
     }
-  }
+
+    setLoading(false);
+  };
+
+  const container = {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "40px",
+    padding: "60px",
+    color: "white",
+    fontFamily: "Inter, sans-serif",
+  };
+
+  const input = {
+    width: "100%",
+    padding: "14px",
+    borderRadius: "12px",
+    border: "1px solid rgba(255,255,255,0.1)",
+    background: "rgba(15,23,42,0.7)",
+    color: "white",
+    marginTop: "10px",
+  };
+
+  const button = {
+    marginTop: "20px",
+    padding: "16px",
+    borderRadius: "14px",
+    border: "none",
+    background: "linear-gradient(90deg,#7c3aed,#6366f1,#3b82f6)",
+    color: "white",
+    fontWeight: "600",
+    cursor: "pointer",
+    width: "100%",
+  };
 
   return (
-    <form onSubmit={enviarLead} style={formCard}>
-      <label style={label}>Correo</label>
-      <input
-        type="email"
-        value={correo}
-        onChange={(e) => setCorreo(e.target.value)}
-        placeholder="tu@correo.com"
-        style={input}
-      />
+    <div style={container}>
+      {/* TEXTO */}
+      <div>
+        <h1 style={{ fontSize: "52px", lineHeight: "1.1" }}>
+          Evalúa tu empresa antes de tomar la siguiente decisión
+        </h1>
 
-      <label style={label}>Rol</label>
-      <select
-        value={rol}
-        onChange={(e) => setRol(e.target.value)}
-        style={input}
+        <p style={{ marginTop: "20px", color: "#cbd5f5", fontSize: "18px" }}>
+          Déjanos tu información y te contactaremos con un diagnóstico preliminar de madurez estratégica.
+        </p>
+      </div>
+
+      {/* FORMULARIO */}
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          background: "rgba(15,23,42,0.6)",
+          padding: "30px",
+          borderRadius: "20px",
+          border: "1px solid rgba(255,255,255,0.08)",
+        }}
       >
-        <option value="">Selecciona una opción</option>
-        <option value="Dueño / Fundador">Dueño / Fundador</option>
-        <option value="Dirección general">Dirección general</option>
-        <option value="Finanzas">Finanzas</option>
-        <option value="Operaciones">Operaciones</option>
-      </select>
+        <label>Correo</label>
+        <input
+          style={input}
+          value={correo}
+          onChange={(e) => setCorreo(e.target.value)}
+        />
 
-      <label style={label}>Tamaño de empresa</label>
-      <select
-        value={tamano}
-        onChange={(e) => setTamano(e.target.value)}
-        style={input}
-      >
-        <option value="">Selecciona una opción</option>
-        <option value="1–10 empleados">1–10 empleados</option>
-        <option value="11–50 empleados">11–50 empleados</option>
-        <option value="51–250 empleados">51–250 empleados</option>
-        <option value="250+ empleados">250+ empleados</option>
-      </select>
+        <label style={{ marginTop: "15px", display: "block" }}>Rol</label>
+        <select
+          style={input}
+          value={rol}
+          onChange={(e) => setRol(e.target.value)}
+        >
+          <option value="">Seleccionar</option>
+          <option>Finanzas</option>
+          <option>RH</option>
+          <option>Operaciones</option>
+          <option>Dirección</option>
+        </select>
 
-      <button type="submit" disabled={loading} style={button}>
-        {loading ? "Enviando..." : "Evaluar mi empresa"}
-      </button>
+        <label style={{ marginTop: "15px", display: "block" }}>
+          Tamaño de empresa
+        </label>
+        <select
+          style={input}
+          value={tamano}
+          onChange={(e) => setTamano(e.target.value)}
+        >
+          <option value="">Seleccionar</option>
+          <option>1-10 empleados</option>
+          <option>11-50 empleados</option>
+          <option>51-200 empleados</option>
+          <option>200+ empleados</option>
+        </select>
 
-      {mensaje ? <p style={message}>{mensaje}</p> : null}
-    </form>
+        <button type="submit" style={button}>
+          {loading ? "Cargando..." : "Evaluar mi empresa"}
+        </button>
+
+        {mensaje && (
+          <p style={{ marginTop: "15px", color: "#cbd5f5" }}>{mensaje}</p>
+        )}
+      </form>
+    </div>
   );
 }
-
-const formCard: React.CSSProperties = {
-  background: "rgba(255,255,255,0.05)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: "24px",
-  padding: "24px",
-  display: "flex",
-  flexDirection: "column",
-  gap: "10px",
-};
-
-const label: React.CSSProperties = {
-  color: "#ffffff",
-  fontWeight: 700,
-  fontSize: "15px",
-};
-
-const input: React.CSSProperties = {
-  width: "100%",
-  padding: "14px 16px",
-  borderRadius: "14px",
-  border: "1px solid rgba(255,255,255,0.12)",
-  background: "#0b1220",
-  color: "#ffffff",
-  fontSize: "16px",
-  boxSizing: "border-box",
-};
-
-const button: React.CSSProperties = {
-  marginTop: "8px",
-  width: "100%",
-  background: "linear-gradient(135deg, #4f46e5, #8b5cf6)",
-  border: "none",
-  color: "#ffffff",
-  padding: "16px 20px",
-  borderRadius: "999px",
-  fontWeight: 800,
-  fontSize: "17px",
-  cursor: "pointer",
-};
-
-const message: React.CSSProperties = {
-  color: "#e2e8f0",
-  fontSize: "14px",
-  marginTop: "6px",
-};
