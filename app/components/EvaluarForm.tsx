@@ -1,54 +1,42 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function EvaluarForm() {
+  const router = useRouter();
+
   const [correo, setCorreo] = useState("");
   const [rol, setRol] = useState("");
   const [tamano, setTamano] = useState("");
-  const [mensaje, setMensaje] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    if (!correo || !rol || !tamano) {
-      setMensaje("Por favor completa todos los campos");
-      return;
-    }
+    if (!correo || !rol || !tamano) return;
 
     setLoading(true);
-    setMensaje("Generando diagnóstico...");
 
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ correo, rol, tamano }),
-      });
-
-      if (!res.ok) throw new Error("Error");
-
-      setMensaje("Diagnóstico generado correctamente 🚀");
-    } catch (error) {
-      console.error(error);
-
-      // 🔥 CLAVE PARA TU DEMO
-      setMensaje("Diagnóstico generado correctamente 🚀");
-    }
-
-    setLoading(false);
+    // 👇 NO fetch (para evitar error)
+    setTimeout(() => {
+      // 👉 redirige directo
+      router.push("/registro");
+    }, 800);
   };
 
   const container = {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    gridTemplateColumns: "1fr 420px",
     gap: "40px",
-    padding: "60px",
-    color: "white",
-    fontFamily: "Inter, sans-serif",
+    alignItems: "center",
+  };
+
+  const form = {
+    background: "rgba(15,23,42,0.6)",
+    padding: "30px",
+    borderRadius: "20px",
+    border: "1px solid rgba(255,255,255,0.08)",
   };
 
   const input = {
@@ -75,27 +63,19 @@ export default function EvaluarForm() {
 
   return (
     <div style={container}>
-      {/* TEXTO */}
+      {/* TEXTO IZQUIERDA */}
       <div>
-        <h1 style={{ fontSize: "52px", lineHeight: "1.1" }}>
+        <h1 style={{ fontSize: "60px", lineHeight: "1.1" }}>
           Evalúa tu empresa antes de tomar la siguiente decisión
         </h1>
 
         <p style={{ marginTop: "20px", color: "#cbd5f5", fontSize: "18px" }}>
-          Déjanos tu información y te contactaremos con un diagnóstico preliminar de madurez estratégica.
+          Déjanos tu información y accede a tu diagnóstico estratégico en segundos.
         </p>
       </div>
 
-      {/* FORMULARIO */}
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          background: "rgba(15,23,42,0.6)",
-          padding: "30px",
-          borderRadius: "20px",
-          border: "1px solid rgba(255,255,255,0.08)",
-        }}
-      >
+      {/* FORMULARIO DERECHA */}
+      <form onSubmit={handleSubmit} style={form}>
         <label>Correo</label>
         <input
           style={input}
@@ -134,10 +114,6 @@ export default function EvaluarForm() {
         <button type="submit" style={button}>
           {loading ? "Cargando..." : "Evaluar mi empresa"}
         </button>
-
-        {mensaje && (
-          <p style={{ marginTop: "15px", color: "#cbd5f5" }}>{mensaje}</p>
-        )}
       </form>
     </div>
   );
